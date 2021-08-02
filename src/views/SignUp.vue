@@ -1,5 +1,14 @@
 <template>
   <div>
-    <h1>Sign Up</h1>
+    <sign-up-create-form></sign-up-create-form>
   </div>
 </template>
+
+<script>
+import SignUpCreateForm from '@/components/SignUpCreateForm'
+export default {
+  components: {
+    SignUpCreateForm
+  }
+}
+</script>
