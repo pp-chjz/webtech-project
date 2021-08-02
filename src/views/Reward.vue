@@ -1,14 +1,14 @@
 <template>
   <div>
-    <point-table></point-table>
+    <reward-table></reward-table>
   </div>
 </template>
 
 <script>
-import PointTable from '@/components/PointTable'
+import RewardTable from '@/components/RewardTable'
 export default {
   components: {
-    PointTable
+    RewardTable
   }
 }
 </script>

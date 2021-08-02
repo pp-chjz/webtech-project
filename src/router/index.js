@@ -6,6 +6,7 @@ import PpLogin from'../views/Pplogin.vue'
 import Pp from'../views/Pp.vue'
 import Lin from'../views/Lin.vue'
 import Dew from'../views/Dew.vue'
+import Reward from '../views/Reward.vue'
 
 Vue.use(VueRouter)
 
@@ -42,6 +43,11 @@ const routes = [
     path: '/dew',
     name: 'Dew',
     component: Dew
+  },
+  {
+    path: '/reward',
+    name: 'Reward',
+    component: Reward
   },
 
 ]
