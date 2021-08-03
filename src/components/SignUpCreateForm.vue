@@ -1,7 +1,6 @@
 <template>
   <div>
       Sign Up Form
-
         <b-container fluid>
             <b-row class="my-1" v-for="type in types" :key="type">
             <b-col sm="3">
@@ -24,8 +23,10 @@ export default {
       return {
         types: [
           'Username',
-          'Email',
           'password',
+          'Email',
+          'Line',
+          'Facebook',
           'Tel'
         ]
       }
