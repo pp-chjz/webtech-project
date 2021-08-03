@@ -1,11 +1,11 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
-
 import PpLogin from'../views/Pplogin.vue'
 import Pp from'../views/Pp.vue'
-import Lin from'../views/Lin.vue'
+import Point from'../views/Lin.vue'
 import Dew from'../views/Dew.vue'
+import Reward from'../views/Reward.vue'
 
 Vue.use(VueRouter)
 
@@ -34,15 +34,21 @@ const routes = [
     component: Pp
   },
   {
-    path: '/lin',
-    name: 'Lin',
-    component: Lin
+    path: '/point',
+    name: 'Point',
+    component: Point
   },
   {
     path: '/dew',
     name: 'Dew',
     component: Dew
   },
+  {
+    path: '/reward',
+    name: 'Reward',
+    component: Reward
+  }
+
 
 ]
 
