@@ -5,7 +5,7 @@ import Home from '../views/Home.vue'
 import PpLogin from'../views/Pplogin.vue'
 import Pp from'../views/Pp.vue'
 import Lin from'../views/Lin.vue'
-import SignUp from'../views/SignUp.vue'
+import Post from'../views/Post.vue'
 
 Vue.use(VueRouter)
 
@@ -39,9 +39,9 @@ const routes = [
     component: Lin
   },
   {
-    path: '/SignUp',
-    name: 'SignUp',
-    component: SignUp
+    path: '/Post',
+    name: 'Post',
+    component: Post
   },
 
 ]
