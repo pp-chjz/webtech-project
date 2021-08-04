@@ -45,7 +45,6 @@ const routes = [
     component: Lin
   },
 
-
 ]
 
 const router = new VueRouter({
