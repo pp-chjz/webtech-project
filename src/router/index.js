@@ -2,18 +2,29 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 
-import PpLogin from'../views/Pplogin.vue'
+import Login from'../views/auth/Login.vue'
 import Pp from'../views/Pp.vue'
 import Lin from'../views/Lin.vue'
-import SignUp from'../views/SignUp.vue'
+import SignUp from'../views/auth/SignUp.vue'
+import Logout from'../views/auth/Logout.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
-    name: 'Home',
-    component: Home
+    name: 'Login',
+    component: Login
+  },
+  {
+    path: '/SignUp',
+    name: 'SignUp',
+    component: SignUp
+  },
+  {
+    path: '/logout',
+    name: 'Logout',
+    component: Logout
   },
   {
     path: '/about',
@@ -22,11 +33,6 @@ const routes = [
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
-  },
-  {
-    path: '/pplogin',
-    name: 'Pplogin',
-    component: PpLogin
   },
   {
     path: '/pp',
@@ -38,11 +44,7 @@ const routes = [
     name: 'Lin',
     component: Lin
   },
-  {
-    path: '/SignUp',
-    name: 'SignUp',
-    component: SignUp
-  },
+
 
 ]
 
