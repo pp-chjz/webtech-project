@@ -3,9 +3,10 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import PpLogin from'../views/Pplogin.vue'
 import Pp from'../views/Pp.vue'
-import Point from'../views/Lin.vue'
+import Leader from'../views/Leader.vue'
 import Dew from'../views/Dew.vue'
 import Reward from'../views/Reward.vue'
+import AddReward from'../views/AddReward.vue'
 
 Vue.use(VueRouter)
 
@@ -34,9 +35,9 @@ const routes = [
     component: Pp
   },
   {
-    path: '/point',
-    name: 'Point',
-    component: Point
+    path: '/leader',
+    name: 'Leader',
+    component: Leader
   },
   {
     path: '/dew',
@@ -47,8 +48,12 @@ const routes = [
     path: '/reward',
     name: 'Reward',
     component: Reward
+  },
+  {
+    path: '/addreward',
+    name: 'AddReward',
+    component: AddReward
   }
-
 
 ]
 

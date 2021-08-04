@@ -1,17 +1,17 @@
 <template>
   <div>
-  <point-table></point-table>
+  <leader-board></leader-board>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import PointTable from '@/components/PointTable.vue'
+import LeaderBoard from '@/components/LeaderBoard.vue'
 
 export default {
   name: 'Home',
   components: {
-    PointTable,
+    LeaderBoard
   }
 }
 </script>
