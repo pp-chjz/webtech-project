@@ -2,19 +2,29 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 
-import PpLogin from'../views/Pplogin.vue'
+import Login from'../views/auth/Login.vue'
 import Pp from'../views/Pp.vue'
 import Lin from'../views/Lin.vue'
-import Dew from'../views/Dew.vue'
-import Reward from '../views/Reward.vue'
+import SignUp from'../views/auth/SignUp.vue'
+import Logout from'../views/auth/Logout.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
-    name: 'Home',
-    component: Home
+    name: 'Login',
+    component: Login
+  },
+  {
+    path: '/SignUp',
+    name: 'SignUp',
+    component: SignUp
+  },
+  {
+    path: '/logout',
+    name: 'Logout',
+    component: Logout
   },
   {
     path: '/about',
@@ -25,11 +35,6 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
   },
   {
-    path: '/pplogin',
-    name: 'Pplogin',
-    component: PpLogin
-  },
-  {
     path: '/pp',
     name: 'Pp',
     component: Pp
@@ -38,16 +43,6 @@ const routes = [
     path: '/lin',
     name: 'Lin',
     component: Lin
-  },
-  {
-    path: '/dew',
-    name: 'Dew',
-    component: Dew
-  },
-  {
-    path: '/reward',
-    name: 'Reward',
-    component: Reward
   },
 
 ]
