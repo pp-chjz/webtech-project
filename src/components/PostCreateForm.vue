@@ -28,7 +28,7 @@
         </div>
 
         <div class="mb-15">
-          <button>สร้างกระทู้</button>
+          <button @click="add()">สร้างกระทู้</button>
         </div>
     </div>
 
@@ -55,6 +55,13 @@ export default {
                     priority: 'ปกติ',
                     
             }
+        },
+        add() {
+            // let payload = this.form
+    
+            console.log(this.form)
+
+            this.clearForm()
         }
     }
 }
