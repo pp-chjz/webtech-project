@@ -7,6 +7,7 @@
         <b-icon icon="plus-circle" aria-hidden="true"></b-icon>
         <b-link href="/newreward"> Add new reward</b-link>
         </b-button>
+
         </div>
         <div>
             <b-card
@@ -27,7 +28,7 @@
             </b-button>
 
             <b-button variant="primary">
-            <b-icon icon="cart-plus" aria-hidden="true"></b-icon> Edit
+            <b-icon icon="plus-circle" aria-hidden="true"></b-icon> Edit
             </b-button>
             </b-card>
     </div>
