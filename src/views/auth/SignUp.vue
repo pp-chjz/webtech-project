@@ -70,6 +70,7 @@
 </template>
 
 <script>
+import AuthService from "@/services/AuthService"
 
 export default {
   data(){
@@ -83,12 +84,25 @@ export default {
         line:'',
         face:'',
         add:''
-      }
+      },
+      check:0
     }
   },
   methods:{
-    register(){
-      console.log(this.form)
+    async register(){
+      console.log(this.check)
+      let res = await AuthService.register(this.form)
+      
+      if(this.form.password != this.form.c_password){
+        this.$swal("Register Failed password doesn't match")
+      }
+      else if(res.success){
+        this.$swal("Register Success")
+        this.$router.push("/about")
+      }
+      else {
+        this.$swal("Register Failed",res.message,"error")
+      }
 
     }
   }

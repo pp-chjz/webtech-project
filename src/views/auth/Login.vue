@@ -45,9 +45,16 @@ export default {
   methods:{
     async  login(){
       let res = await AuthService.login(this.form)
-        if(res.success){
-          this.$swal("Login Success")
+        if(res.success && res.roles === "admin"){
+          console.log("testtest")
+          this.$swal("Login Success,You are ADMIN!!")
           this.$router.push('/about')
+        }
+        else if(res.success && res.roles === "common"){
+          console.log("testtest")
+          this.$swal("Login Success,You are USER!!")
+          this.$router.push('/about')
+          
         }else {
           this.$swal("Login Failed",res.message, "error")
         }
