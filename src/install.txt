@@ -1,0 +1,5 @@
+npm install vuetify
+npm install vue bootstrap bootstrap-vue
+npm install buefy
+npm install --save vue-swal
+npm install vuesax@next

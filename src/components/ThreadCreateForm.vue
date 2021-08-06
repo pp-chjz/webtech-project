@@ -76,15 +76,15 @@
 }
 
 h2 {
-   color: hsl(348, 86%, 43%);
+   color: rgb(242, 19, 93)
 }
 
 p {
     font-size: 17px;
+    color: rgb(242, 19, 93)
 }
 
 span.card {
-    color: hsl(348, 86%, 43%);
     width: 350px;
     height: auto;
     display: inline-flex;
