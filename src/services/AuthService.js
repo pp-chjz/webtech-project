@@ -21,11 +21,11 @@ export default {
 
 
 
-    async login({username,password}){
+    async login({email,password}){
         //call POSTauth/local
         try{
             let body ={
-                identifier: username,
+                identifier: email,
                 password: password
             }
             let res = await Axios.post(api_endpoint + "/auth/local" ,body)
