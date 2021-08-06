@@ -6,7 +6,6 @@ import Pp from'../views/Pp.vue'
 import Leader from'../views/Leader.vue'
 import Dew from'../views/Dew.vue'
 import Reward from'../views/Reward.vue'
-import AddReward from'../views/AddReward.vue'
 
 Vue.use(VueRouter)
 
@@ -48,11 +47,6 @@ const routes = [
     path: '/reward',
     name: 'Reward',
     component: Reward
-  },
-  {
-    path: '/addreward',
-    name: 'AddReward',
-    component: AddReward
   }
 
 ]

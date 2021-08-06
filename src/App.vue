@@ -7,8 +7,7 @@
       <router-link to="/pp">PP</router-link>|
       <router-link to="/leader">LEADERBOARD</router-link>|
       <router-link to="/dew">DEW</router-link>|
-      <router-link to="/reward">REWARD</router-link>|
-      <router-link to="/addreward">NewReward</router-link>
+      <router-link to="/reward">REWARD</router-link>
       
     </div>
     <router-view/>
