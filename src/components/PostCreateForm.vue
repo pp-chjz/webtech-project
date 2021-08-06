@@ -71,6 +71,7 @@ export default {
     },
     methods: {
         clearForm() {
+          console.log('clear');
             this.form = {
                     user: '',
                     topic: '',
