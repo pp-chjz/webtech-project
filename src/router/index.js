@@ -7,6 +7,8 @@ import Pp from'../views/Pp.vue'
 import Lin from'../views/Lin.vue'
 import SignUp from'../views/auth/SignUp.vue'
 import Logout from'../views/auth/Logout.vue'
+import Post from'../views/Post.vue'
+import Thread from '../views/Thread.vue'
 
 Vue.use(VueRouter)
 
@@ -44,6 +46,16 @@ const routes = [
     name: 'Lin',
     component: Lin
   },
+  {
+    path: '/Post',
+    name: 'Post',
+    component: Post
+  },
+  {
+    path: '/Thread',
+    name: 'Thread',
+    component: Thread
+  }
 
 ]
 
