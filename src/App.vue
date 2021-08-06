@@ -6,7 +6,8 @@
       <router-link to="/pplogin">PPlogin</router-link>|
       <router-link to="/pp">PP</router-link>|
       <router-link to="/lin">LIN</router-link>|
-      <router-link to="/Post">Post</router-link>
+      <router-link to="/Post">Post</router-link> |
+      <router-link to="/Thread">Thread</router-link>
     </div>
     <router-view/>
   </div>
