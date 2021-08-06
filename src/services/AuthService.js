@@ -68,17 +68,20 @@ export default {
                 face: facebook,
                 add: add
             }
-            let res = await Axios.post(url, body)
-            if(res.status === 200){
-                console.log(res.data)
-                localStorage.setItem(auth_key, JSON.stringify(res.data))
-                return{
-                    success :true,
-                    user:res.data.user,
-                    jwt:res.data.jwt
+            if(password === c_password)
+            {
+                let res = await Axios.post(url, body)
+                if(res.status === 200){
+                    console.log(res.data)
+                    localStorage.setItem(auth_key, JSON.stringify(res.data))
+                    return{
+                        success :true,
+                        user:res.data.user,
+                        jwt:res.data.jwt
+                    }
+                } else{
+                    console.log("NOT 200",res)
                 }
-            } else{
-                console.log("NOT 200",res)
             }
         }catch(e){
             console.error(e)
@@ -96,6 +99,52 @@ export default {
             }
          
         }
+    },
+
+    async post({ topic,text,priority,status }){
+        try{
+            let url = `${api_endpoint}/posts`
+            let body = {
+                topic: topic,
+                info: text,
+                priority: priority,
+                status: status,
+                user_post_id: user.id.toString()
+            }
+            if(topic != '' && text != '')
+            {
+                let res = await Axios.post(url, body)
+                if(res.status === 200){
+                    console.log(user.id)
+                    console.log(jwt)
+                    console.log(res.data)
+                    // localStorage.setItem(auth_key, JSON.stringify(res.data))
+                    return{
+                        success :true,
+                        user:res.data.user,
+                        jwt:res.data.jwt
+                    }
+                } else{
+                    console.log("NOT 200",res)
+                }
+            }
+        }catch(e){
+            console.error(e)
+            if(e.response.status === 400){
+                // console.error(e.response.data.message[0].messages[0].message)
+                return{
+                    success :false,
+                    message: e.response.data.message[0].messages[0].message
+                }
+            } else {
+                return{
+                    success: false,
+                    message : "Unknow error: " + e.response.data
+                }
+            }
+         
+        }
+         
     },
 
     logout(){

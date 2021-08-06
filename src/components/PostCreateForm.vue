@@ -20,13 +20,13 @@
           <a>โปรดเลือกระดับความสำคัญ: </a>
           <select v-model="form.priority" id="sel">
             <option> ปกติ</option>
-            <option> ด่วน</option>
+            <option> ปานกลาง</option>
             <option> ด่วนมาก</option>
           </select>
         </div>
 
-          <button id="mp" class="button is-danger">รีเซ็ต</button>
-          <button id="mp" class="button is-danger">สร้างกระทู้</button>
+          <button @click="clearForm" id="mp" class="button is-danger">รีเซ็ต</button>
+          <button @click="post" id="mp" class="button is-danger">สร้างกระทู้</button>
        
     </div>
 
@@ -34,6 +34,9 @@
 </template>
 
 <script>
+
+import AuthService from "@/services/AuthService"
+
 export default {
     data() {
         return {
@@ -42,7 +45,7 @@ export default {
                     topic: '',
                     text: '',
                     priority: 'ปกติ',
-                    status: false
+                    status: 'false'
                 }
         }
     },
@@ -54,7 +57,7 @@ export default {
                     topic: '',
                     text: '',
                     priority: 'ปกติ',
-                    status: false
+                    status: 'false'
                     
             }
         },
@@ -64,7 +67,24 @@ export default {
             console.log(this.form)
 
             this.clearForm()
+        },
+        async post(){
+          console.log(this.check)
+          let res = await AuthService.post(this.form)
+          
+          if(this.form.topic === '' || this.form.text === ''){
+            this.$swal("post Failed fill in the blank")
+          }
+          else if(res.success){
+            this.$swal("post Success")
+            this.$router.push("/about")
+          }
+          else {
+            this.$swal("post Failed",res.message,"error")
+          }
+
         }
+  
     }
 }
 </script>
