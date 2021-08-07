@@ -1,14 +1,21 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
 
-import Login from'../views/auth/Login.vue'
-import Pp from'../views/Pp.vue'
+import Home from '../views/Home.vue'
 import Lin from'../views/Lin.vue'
+
+import Pp from'../views/Pp.vue'
+import Login from'../views/auth/Login.vue'
 import SignUp from'../views/auth/SignUp.vue'
 import Logout from'../views/auth/Logout.vue'
+
 import Post from'../views/Post.vue'
 import Thread from '../views/Thread.vue'
+
+
+
+import Leader from'../views/Leader.vue'
+import Reward from'../views/Reward.vue'
 
 Vue.use(VueRouter)
 
@@ -42,9 +49,9 @@ const routes = [
     component: Pp
   },
   {
-    path: '/lin',
-    name: 'Lin',
-    component: Lin
+    path: '/leader',
+    name: 'Leader',
+    component: Leader
   },
   {
     path: '/Post',
@@ -55,6 +62,11 @@ const routes = [
     path: '/Thread',
     name: 'Thread',
     component: Thread
+  },
+  {
+    path: '/reward',
+    name: 'Reward',
+    component: Reward
   }
 
 ]
