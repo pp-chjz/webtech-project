@@ -35,6 +35,7 @@
             <button @click="closeForm">ยกเลิก</button>
           </td>
           <!-- <button @click="deleteReward">ลบ</button> -->
+          <button>Exchange</button>
          <button>ลบ</button>
         </tr>
       </tbody>

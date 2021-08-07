@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import Axios from 'axios'
 
-let api_endpoint = process.env.REWARD_ENDPOINT || "http://localhost:1337"
+let api_endpoint = process.env.VUE_APP_REWARD_ENDPOINT || "http://localhost:1337"
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -39,10 +39,9 @@ export default new Vuex.Store({
         point: payload.point,
         quantity: payload.quantity
       }
-      
       let res = await Axios.post(url, body)
-      let data = res.data
-      commit('add', data)
+        let data = res.data
+        commit('add', data)
     },
 
     async editReward({ commit }, payload){
