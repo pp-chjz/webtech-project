@@ -6,6 +6,7 @@
     <h2 id="h2-post">โพสต์กระทู้ข้อความช่วยเหลือ</h2>
 
     <div class="box-all">
+
       <div class="line">  
           <b-row>
             <b-col sm="2">
@@ -39,17 +40,17 @@
               <label for="Line">ระดับความสำคัญ:</label>
             </b-col>
             <b-col sm="1">
-              <select v-model="form.priority" id="sel">
-              <option> ปกติ</option>
-              <option> ด่วน</option>
-              <option> ด่วนมาก</option>
+               <select v-model="form.priority" id="sel">
+                <option> ปกติ</option>
+                <option> ด่วน</option>
+                <option> ด่วนมาก</option>
               </select>            
             </b-col>
           </b-row>
         </div>
 
           <button @click="clearForm()" id="mp" class="button is-danger">รีเซ็ต</button>
-          <button id="mp" class="button is-danger">สร้างกระทู้</button>
+          <button @click="add()" id="mp" class="button is-danger">สร้างกระทู้</button>
        
     </div>
 
@@ -59,15 +60,16 @@
 <script>
 export default {
     data() {
-        return {
-            form: {
-                    user: '',
-                    topic: '',
-                    text: '',
-                    priority: 'ปกติ',
-                    status: false
-                }
-        }
+      return {
+          form: {
+                  user: '',
+                  topic: '',
+                  text: '',
+                  priority: 'ปกติ',
+                  time: new Date(),
+                  status: false
+              }
+      }
     },
     methods: {
         clearForm() {
@@ -77,6 +79,7 @@ export default {
                     topic: '',
                     text: '',
                     priority: 'ปกติ',
+                    time: new Date(),
                     status: false
                     
             }
@@ -108,7 +111,7 @@ export default {
 }
 
 #sel {
-  border: 1px solid gray;
+  border: 1px solid rgb(207, 206, 206);
   width: 2cm;
 }
 
