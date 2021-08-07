@@ -5,24 +5,48 @@
 
     <h2 id="h2-post">โพสต์กระทู้ข้อความช่วยเหลือ</h2>
 
-    <div class="box">
-        <div class="line">
-            <p>เรื่อง: </p>
-            <b-input id="text-size" type="text" v-model="form.topic"></b-input>
-        </div> 
+    <div class="box-all">
 
-        <div class="line" >
-            <p>ใส่ข้อความเพื่อขอความช่วยเหลือ: </p>
-            <textarea id="area-size" v-model="form.text"></textarea>
-        </div> 
+      <div class="line">  
+          <b-row>
+            <b-col sm="2">
+              <label for="topic">เรื่อง:</label>
+            </b-col>
+            <b-col sm="5">
+              <b-form-input v-model="form.topic" placeholder="กรอกเรื่อง"></b-form-input>
+            </b-col>
+          </b-row>
+        </div>
 
-        <div class="line">
-          <a>โปรดเลือกระดับความสำคัญ: </a>
-          <select v-model="form.priority" id="sel">
-            <option> ปกติ</option>
-            <option> ปานกลาง</option>
-            <option> ด่วนมาก</option>
-          </select>
+      <div class="line">   
+          <b-row>
+            <b-col sm="2">
+              <label for="text">รายละเอียด:</label>
+            </b-col>
+            <b-col sm="5">
+              <b-form-textarea
+                id="textarea-small"
+                size="sm"
+                placeholder="ใส่รายละเอียดเพื่อขอความช่วยเหลือ"
+                v-model="form.text"
+              ></b-form-textarea>
+            </b-col>
+          </b-row>
+        </div>
+
+        <div class="line">  
+          <b-row>
+            <b-col sm="2">
+              <label for="Line">ระดับความสำคัญ:</label>
+            </b-col>
+            <b-col sm="1">
+               <select v-model="form.priority" id="sel">
+                <option> ปกติ</option>
+                <option> ปานกลาง</option>
+                <option> ด่วนมาก</option>
+              </select>            
+            </b-col>
+          </b-row>
         </div>
 
           <button @click="clearForm" id="mp" class="button is-danger">รีเซ็ต</button>
@@ -39,15 +63,16 @@ import AuthService from "@/services/AuthService"
 
 export default {
     data() {
-        return {
-            form: {
-                    user: '',
-                    topic: '',
-                    text: '',
-                    priority: 'ปกติ',
-                    status: 'false'
-                }
-        }
+      return {
+          form: {
+                  user: '',
+                  topic: '',
+                  text: '',
+                  priority: 'ปกติ',
+                  time: new Date(),
+                  status: 'false'
+              }
+      }
     },
     methods: {
         clearForm() {
@@ -57,6 +82,7 @@ export default {
                     topic: '',
                     text: '',
                     priority: 'ปกติ',
+                    time: new Date(),
                     status: 'false'
                     
             }
@@ -69,7 +95,7 @@ export default {
             this.clearForm()
         },
         async post(){
-          console.log(this.check)
+          console.log(new Date())
           let res = await AuthService.post(this.form)
           
           if(this.form.topic === '' || this.form.text === ''){
@@ -91,23 +117,13 @@ export default {
 
 <style lang="scss" scoped>
 
-.box , .line{
-  margin-top: 10px;
-  margin-right: 30px;
-  margin-left: 30px;
-  margin-bottom: 30px;
+.box-all, .line {
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
-#area-size {
-  width: 7cm;
-  height: 7cm;
-  border: 1px solid gray;
-}
-
-#text-size {
-  border: 1px solid gray;
-  width: 7cm;
-  display: inline-flex;
+.line {
+  padding-left: 25%;
 }
 
 #back {
@@ -115,12 +131,16 @@ export default {
 }
 
 #sel {
-  border: 1px solid gray;
+  border: 1px solid rgb(207, 206, 206);
   width: 2cm;
 }
 
 #h2-post {
   margin-left: 60px;
+}
+
+label {
+  font-size: 18px;
 }
 
 </style>

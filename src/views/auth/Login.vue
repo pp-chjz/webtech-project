@@ -1,10 +1,47 @@
 <template>
-  <div>
+  <div class="frame">
+
+    <h2 id="h2-post">เข้าสู่ระบบ</h2>
+
     <form @submit.prevent="login">
-      <div>
+
+      <div class="box-all">
+
+        <div class="line" >
+          <b-row>
+            <b-col sm="2">
+              <label for="email">อีเมล:</label>
+            </b-col>
+            <b-col sm="5">
+              <b-form-input v-model="form.email" 
+              placeholder="กรอกอีเมล"
+              autocomplete="off"></b-form-input>
+            </b-col>
+          </b-row>
+        </div>
+
+        <div class="line"> 
+          <b-row>
+            <b-col sm="2">
+              <label for="password">รหัสผ่าน:</label>
+            </b-col>
+            <b-col sm="5">
+              <b-form-input v-model="form.password" 
+              placeholder="กรอกรหัสผ่าน"
+              autocomplete="off"></b-form-input>
+            </b-col>
+          </b-row>               
+        </div>
+
+        <button id="mp-add" class="button is-danger">เข้าสู่ระบบ</button>
+
+      </div>
+
+
+      <!-- <div>
               
         <label for="email">email</label>
-        <input v-model="form.email" for="text" placeholder="email" autocomplete="off">
+        <input  v-model="form.email" for="text" placeholder="email" autocomplete="off">
      
       </div>
       
@@ -20,13 +57,10 @@
               
         <button>Login</button>
      
-      </div>
+      </div> -->
+   
     </form>
-
-
   </div>
-
-  
 </template>
 
 <script>
@@ -64,6 +98,18 @@ export default {
 
 </script>
 
-<style>
+<style lang="scss" scoped>
 
+.line {
+  padding-left: 25%;
+}
+
+.box-all, .line {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+label {
+  font-size: 18px;
+}
 </style>

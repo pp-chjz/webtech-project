@@ -54,11 +54,12 @@ export default {
         }
     },
 
-    async register({username,email,password,c_password,phone,line,facebook,add}){
+    async register({username,email,password,c_password,phone,line,facebook,add,name}){
         //call POST/auth/local/register
         try{
             let url = `${api_endpoint}/auth/local/register`
             let body = {
+                name: name,
                 username: username,
                 email: email,
                 password:password,
@@ -68,7 +69,7 @@ export default {
                 face: facebook,
                 add: add
             }
-            if(password === c_password)
+            if(password === c_password && name != '' )
             {
                 let res = await Axios.post(url, body)
                 if(res.status === 200){
@@ -101,7 +102,7 @@ export default {
         }
     },
 
-    async post({ topic,text,priority,status }){
+    async post({ topic,text,priority,status,time }){
         try{
             let url = `${api_endpoint}/posts`
             let body = {
@@ -109,13 +110,20 @@ export default {
                 info: text,
                 priority: priority,
                 status: status,
-                user_post_id: user.id.toString()
+                user_post_id: user.id.toString(),
+                user_post_name: user.name,
+                phone_user:user.phone,
+                line_user: user.line,
+                face_user:user.face,
+                add_user: user.add,
+                time: time
+                // user_post_id: "test"
             }
             if(topic != '' && text != '')
             {
                 let res = await Axios.post(url, body)
                 if(res.status === 200){
-                    console.log(user.id)
+                    console.log(user)
                     console.log(jwt)
                     console.log(res.data)
                     // localStorage.setItem(auth_key, JSON.stringify(res.data))
