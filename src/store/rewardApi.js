@@ -12,7 +12,7 @@ export default new Vuex.Store({
   getters: {
     rewards: (state) => state.data,
   },
-  mutations: { //private setter in java
+  mutations: {
     fetch (state, { res }){
         state.data = res.data
     },
@@ -21,10 +21,13 @@ export default new Vuex.Store({
     },
     edit(state, payload ){
       state.data[payload.index] = payload
-    }
+    },
+    // delete(state, { payload }) {
+    //     state.reward[payload.index] = payload.data
+    // }
   },
-  actions: { //public method in oop
-    async fetchReward ({ commit }){ //commit เป็น keyword ไว้เรียก mutation
+  actions: {
+    async fetchReward ({ commit }){
         let res = await Axios.get(api_endpoint + "/rewards")
         console.log(res);
         commit('fetch',{ res })
@@ -38,15 +41,9 @@ export default new Vuex.Store({
       }
       
       let res = await Axios.post(url, body)
-      //todo: call api to add data
       let data = res.data
       commit('add', data)
     },
-    // async fetchDeleteReward ({ commit }){ //commit เป็น keyword ไว้เรียก mutation
-    //     let res = await Axios.delete(api_endpoint + "/rewards")
-    //     console.log(res);
-    //     commit('fetch',{ res })
-    // },
 
     async editReward({ commit }, payload){
       let url = api_endpoint + "/rewards/" + payload.id
@@ -65,7 +62,20 @@ export default new Vuex.Store({
         console.err(res)
       }
       commit("edit", {payload})
-    }
+    },
+    // async deleteReward({ commit }, payload) {
+    //     let url = api_endpoint + "/rewards/" + payload.id
+    //     //let headers = AuthService.getApiHeader()
+    //     let res = await Axios.delete(url)
+    //     if (res.status === 200) {
+    //         commit("delete", res)
+    //         return {
+    //             success: true,
+    //             data: res
+    //         }
+    //     }
+    // }
+
   },
   modules: {
   }

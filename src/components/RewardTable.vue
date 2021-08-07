@@ -34,7 +34,8 @@
             <button @click="editReward">อัพเดต</button>
             <button @click="closeForm">ยกเลิก</button>
           </td>
-          <button>ลบ</button>
+          <!-- <button @click="deleteReward">ลบ</button> -->
+         <button>ลบ</button>
         </tr>
       </tbody>
     </table>
@@ -46,8 +47,7 @@ import RewardApiStore from "@/store/rewardApi"
 export default {
       data() {
     return {
-      rewards: [], // list เอาไว้แสดง
-      // สำหรับฟอร์มแก้ไข
+      rewards: [], 
       editIndex: -1,
       form: {
         id: "",
@@ -58,21 +58,13 @@ export default {
     }
   },
   created() {
-    // ใช้ this เรียก methods ใน component ตัวเอง
     this.fetchReward()
   },
   methods: {
     async fetchReward() {
-      // เรียก action ใน Store ใช้ ชื่อStore.dispatch('ชื่อaction')
       await RewardApiStore.dispatch("fetchReward")
-      // เรียก getter ใน Store
       this.rewards = RewardApiStore.getters.rewards
     },
-    //async fetchDeleteReward() {
-      // เรียก action ใน Store ใช้ ชื่อStore.dispatch('ชื่อaction')
-      //await RewardApiStore.dispatch("fetchDeleteReward")
-      // เรียก getter ใน Store
-    //},
     openForm(index, reward) {
       console.log("index", index)
       console.log("reward", reward)
@@ -105,7 +97,12 @@ export default {
       await RewardApiStore.dispatch("editReward", payload)
       this.closeForm()
       this.fetchReward()
+      location.reload()
     },
+    // async deleteReward(reward) {
+    // await RewardApiStore.dispatch("deleteReward",reward);
+    // location.reload()
+    // },
   },
 }
 </script>
