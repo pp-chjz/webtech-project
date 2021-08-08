@@ -2,7 +2,12 @@
   <div>
 
     <div>
-      <v-simple-table id="color-th" dark class="border">
+      <v-simple-table 
+        id="color-th" 
+        dark 
+        class="border"
+        fixed-header
+        height="850px">
 
         <thead>
           <tr>
@@ -161,21 +166,12 @@ h1,.totalpoint{
     font-family: 'Sriracha', cursive;
 }
 
-// .totalpoint{
-//     margin-left: 60%;
-// }
-
-// .addnewreward{
-//     margin-left: 60%;
-//     margin-top: 5%;
-// }
-
 #color-th {
-  font-size: 20px;
-  margin: 40px;
+  font-size: 25px;
+  margin: 30px;
   text-align: center;
   padding: 35px;
-  color: #f5365c
+  color: #f5365c;
 }
 
 #td-font {

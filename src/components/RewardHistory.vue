@@ -2,32 +2,38 @@
   <div>
 
     <div>
-         <b-button v-b-toggle.sidebar-right class="button is-danger">
-        <b-icon icon="clock-history" 
-          aria-hidden="true"
-          ></b-icon> 
+        <b-button v-b-toggle.sidebar-right class="button is-danger">
+          <b-icon icon="clock-history" 
+            aria-hidden="true"
+            ></b-icon> 
           ประวัติ
-      </b-button>
-      <b-sidebar id="sidebar-right" bg-variant="dark" text-variant="danger" right shadow>
-          <div class="px-3 py-2" id="color-label">
-            // ใส่ id="color-label" ใน label ด้วย 
-        <thead>
-          <tr>
-            <th id="color-th">ลำดับ</th>
-            <th id="color-th">แต้มที่ได้รับ</th>
-            <th id="color-th">แต้มที่ใช้</th>
-          </tr>
-        </thead>
+        </b-button>
 
-        <tbody >
-          <tr v-for="(history, index) in histories" :key="index" >
-            <td id="td-font">{{ index + 1 }}</td>
-            <td id="td-font">{{ history.receive_point }}</td>
-            <td id="td-font">{{ history.use_point }}</td>
-        </tr>
-        </tbody>
+        <b-sidebar id="sidebar-right" bg-variant="dark" text-variant="danger" right shadow>
+          <div class="px-3 py-2" id="color-label">
+            <v-simple-table 
+              fixed-header
+              height="850px">
+              <thead >
+                <tr>
+                  <th id="color-th">ลำดับ</th>
+                  <th id="color-th">แต้มที่ได้รับ</th>
+                  <th id="color-th">แต้มที่ใช้</th>
+                </tr>
+              </thead>
+
+              <tbody >
+                <tr v-for="(history, index) in histories" :key="index" >
+                  <td id="td-font">{{ index + 1 }}</td>
+                  <td id="td-font">{{ history.receive_point }}</td>
+                  <td id="td-font">{{ history.use_point }}</td>
+                </tr>
+              </tbody>
+
+            </v-simple-table>
           </div>
-      </b-sidebar>
+        </b-sidebar>
+
     </div>
 
   </div>
@@ -75,11 +81,14 @@ h1,.totalpoint{
   margin: 40px;
   text-align: center;
   padding: 35px;
-  color: #f5365c
+  color: #f5365c ;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 #td-font {
   font-size: 20px;
+  color: #f5365c ;
 }
 
 #bt-margin {

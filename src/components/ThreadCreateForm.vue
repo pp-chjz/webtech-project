@@ -1,6 +1,7 @@
 <template>
     <div class="frame">
         
+    
     <b-button id="log-out" variant="outline-danger" href="">Log Out</b-button>
     <b-button id="post" variant="outline-danger" href="">Post</b-button>
     <h2>กระทู้ข้อความช่วยเหลือ</h2>
