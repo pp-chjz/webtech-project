@@ -16,7 +16,16 @@
     <router-view/>
   </div>
 </template>
-
+// <script>
+// import AuthUser from "@/store/AuthUser"
+// export default {
+//   methods:{
+//     isAuthen(){
+//       return AuthUser.getter.isAuthen
+//     }
+//     }
+// }
+// </script>
 <style lang="scss">
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
