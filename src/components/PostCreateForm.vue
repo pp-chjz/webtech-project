@@ -87,6 +87,7 @@ export default {
                     
             }
         },
+
         add() {
             // let payload = this.form
     
@@ -94,6 +95,7 @@ export default {
 
             this.clearForm()
         },
+        
         async post(){
           console.log(new Date())
           let res = await AuthService.post(this.form)

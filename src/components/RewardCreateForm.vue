@@ -1,44 +1,91 @@
 <template>
-  <div>
+  <div class="frame-re">
+
     <div>
-        <h1>รางวัล</h1>
-        <h2 class="totalpoint"> คะแนนคงเหลือ</h2>
+        <h1 id="h2-re">รางวัล</h1>
     </div>
+
     <div>
-        <b-button v-b-toggle.sidebar-1>
-        <b-icon icon="plus-circle" aria-hidden="true"></b-icon> เพิ่มรางวัลใหม่
+
+      <h3> คะแนนคงเหลือ: {{ form.point }}</h3>
+
+      <div id="bt-inline">
+        <b-button v-b-toggle.sidebar-1 class="button is-danger">
+        <b-icon icon="plus-circle" 
+          aria-hidden="true"
+          ></b-icon> 
+          เพิ่มรางวัลใหม่
         </b-button>
-        <b-sidebar id="sidebar-1" title="เพิ่มรางวัล">
+      </div>
+        
+      <b-sidebar id="sidebar-1" bg-variant="dark" text-variant="danger" shadow>
         <div class="px-3 py-2">
-            <label>ชื่อรางวัล</label>
-            <input type="text" v-model="form.name">
-        <div>
-            <label>จำนวนแต้ม</label>
-            <input type="text" v-model="form.point">
+
+          <div id="color-label">
+            <b-row>
+              <b-col sm="4">
+                <label for="">ชื่อรางวัล:</label>
+              </b-col>
+              <b-col sm="8">
+                <b-form-input type="text" v-model="form.name" placeholder="กรอกชื่อรางวัล"></b-form-input>
+              </b-col>
+            </b-row>
+          </div>
+
+          <div id="color-label">
+            <b-row>
+              <b-col sm="4">
+                <label for="">จำนวนแต้ม:</label>
+              </b-col>
+              <b-col sm="8">
+                <b-form-input type="text" v-model="form.point" placeholder="กรอกจำนวนแต้ม"></b-form-input>
+              </b-col>
+            </b-row>
+          </div>
+
+          <div id="color-label">
+            <b-row>
+              <b-col sm="4">
+                <label for="">จำนวน:</label>
+              </b-col>
+              <b-col sm="8">
+                <b-form-input type="text" v-model="form.quantity" placeholder="กรอกจำนวน"></b-form-input>
+              </b-col>
+            </b-row>
+          </div>
+
+          <b-form-file id="color-label" class="mt-3" plain ></b-form-file>
+
         </div>
-        <div>
-            <label>จำนวน</label>
-            <input type="text" v-model="form.quantity">
-        </div>
-            <b-form-file class="mt-3" plain></b-form-file>
-        </div>
-            <button @click="addReward">เพิ่ม</button>
-            </b-sidebar>
-        </div>
-        <div>
-            <b-button v-b-toggle.sidebar-right>
-            <b-icon icon="clock-history" aria-hidden="true"></b-icon> ประวัติ
-            </b-button>
-            <b-sidebar id="sidebar-right" title="ประวัติ" right shadow>
-        <div class="px-3 py-2">
-        </div>
-            </b-sidebar>
+        
+        <button @click="addReward" class="button is-danger" id="size-button">เพิ่ม</button>
+
+      </b-sidebar>
+
+    </div>
+
+    <div>
+      <b-button v-b-toggle.sidebar-right class="button is-danger">
+        <b-icon icon="clock-history" 
+          aria-hidden="true"
+          ></b-icon> 
+          ประวัติ
+      </b-button>
+
+      <b-sidebar id="sidebar-right" bg-variant="dark" text-variant="danger" right shadow>
+          <div class="px-3 py-2" id="color-label">
+            // ใส่ id="color-label" ใน label ด้วย 
+          </div>
+      </b-sidebar>
+    </div>
+
   </div>
-</div>
 </template>
 
 <script>
+
 import RewardApiStore from "@/store/rewardApi"
+
 export default {
   data() {
     return {
@@ -49,6 +96,7 @@ export default {
       }
     }
   },
+
   methods: {
     clearForm() {
       this.form = {
@@ -57,6 +105,7 @@ export default {
         quantity: ""
       }
     },
+
     addReward() {
       let payload = {
         name: this.form.name,
@@ -68,8 +117,40 @@ export default {
       this.clearForm()
       location.reload()
     }
+
   }
 }
 </script>
 
-<style></style>
+<style lang="scss" scoped>
+
+#bt-inline {
+  margin-bottom: 15px;
+  margin-top: 35px;
+}
+
+.frame-re {
+  margin-top: 10px;
+}
+
+h1, h3 {
+  color: #f5365c
+}
+
+h3 {
+  margin-left: 100px;
+  text-align: left;
+  margin-top: 15px;
+}
+
+#color-label {
+  font-size: 20px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+#size-button {
+  font-size: 19px;
+  margin-top: 20px;
+}
+</style>

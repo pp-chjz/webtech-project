@@ -82,6 +82,7 @@ import PostApiStore from "@/store/Post"
             }
         }
     },
+
     async created() {
             // ใช้ this เรียก methods ใน component ตัวเอง
            await this.fetchPost()
@@ -97,6 +98,7 @@ import PostApiStore from "@/store/Post"
             console.log("kala"  + this.form)
 
         },
+
         danger() {
                 const notif = this.$buefy.notification.open({
                     duration: 5000,
@@ -105,6 +107,7 @@ import PostApiStore from "@/store/Post"
                     type: 'is-danger',
                 })   
         },
+
         openForm(index, card) {
             this.editIndex = index
             let cloned = JSON.parse(JSON.stringify(card))
@@ -112,6 +115,7 @@ import PostApiStore from "@/store/Post"
             this.form.text = cloned.text
             this.form.priority = cloned.priority
         },
+
         closeForm() {
             this.editIndex = -1
             this.form = {
@@ -121,6 +125,7 @@ import PostApiStore from "@/store/Post"
                 priority: ''
             }
         },
+        
         editCard() {
             let payload = {
                 index: this.editIndex,
