@@ -26,7 +26,7 @@
               <label for="password">รหัสผ่าน:</label>
             </b-col>
             <b-col sm="5">
-              <b-form-input v-model="form.password" 
+              <b-form-input type ="password" v-model="form.password" 
               placeholder="กรอกรหัสผ่าน"
               autocomplete="off"></b-form-input>
             </b-col>
@@ -72,26 +72,32 @@ export default {
     return{
       form:{
         email: '',
-        password:'',
+        password:''
       }
     }
   },
   methods:{
     async  login(){
       let res = await AuthService.login(this.form)
-        if(res.success && res.roles === "admin"){
-          console.log("testtest")
-          this.$swal("Login Success,You are ADMIN!!")
+      if(res.success && res.roles === "admin"){
+          this.$swal("Login Success,You are ADMIN!!" ,`Welcome, ${res.user.username}`, "success")
           this.$router.push('/about')
         }
-        else if(res.success && res.roles === "common"){
-          console.log("testtest")
-          this.$swal("Login Success,You are USER!!")
-          this.$router.push('/about')
-
-        }else {
-          this.$swal("Login Failed",res.message, "error")
+      else if(res.success && res.roles === "common"){
+        this.$swal("Login Success,You are USER!!" ,`Welcome, ${res.user.username}`, "success")
+        this.$router.push('/about')
         }
+      else 
+      {
+        this.$swal("Login Failed",res.message, "error")
+        this.clearForm()
+        }
+    },
+    clearForm(){
+      this.form ={
+        email:'',
+        password:''
+      }
     }
   }
 }

@@ -205,6 +205,12 @@ export default {
       else if(this.form.name === '' ){
         this.$swal("Register Failed fill in your name")
       }
+      else if(this.form.email === '' ){
+        this.$swal("Please fill in your email")
+      }
+      else if(this.form.phone === '' ){
+        this.$swal("Please fill in your phone number")
+      }
       else if(res.success){
         this.$swal("Register Success")
         this.$router.push("/about")
