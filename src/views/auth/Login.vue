@@ -105,7 +105,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300&display=swap');
+h2, label, button{
+  font-family: 'Chakra Petch', sans-serif;
+}
 .line {
   padding-left: 25%;
 }
