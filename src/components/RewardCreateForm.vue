@@ -61,22 +61,6 @@
         <button @click="addReward" class="button is-danger" id="size-button">เพิ่ม</button>
 
       </b-sidebar>
-
-    </div>
-
-    <div>
-      <b-button v-b-toggle.sidebar-right class="button is-danger">
-        <b-icon icon="clock-history" 
-          aria-hidden="true"
-          ></b-icon> 
-          ประวัติ
-      </b-button>
-
-      <b-sidebar id="sidebar-right" bg-variant="dark" text-variant="danger" right shadow>
-          <div class="px-3 py-2" id="color-label">
-            // ใส่ id="color-label" ใน label ด้วย 
-          </div>
-      </b-sidebar>
     </div>
 
   </div>
@@ -85,7 +69,6 @@
 <script>
 
 import RewardApiStore from "@/store/rewardApi"
-
 export default {
   data() {
     return {
@@ -93,7 +76,7 @@ export default {
         name: "",
         point: "",
         quantity: ""
-      }
+      },
     }
   },
 

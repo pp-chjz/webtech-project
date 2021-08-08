@@ -15,7 +15,7 @@
 
         <tbody >
 
-          <tr v-for="(reward, index) in 20" :key="index" >
+          <tr v-for="(reward, index) in rewards" :key="index" >
             <td id="td-font">{{ index + 1 }}</td>
             <td id="td-font" v-if="index !== editIndex">{{ reward.name }}</td>
            
