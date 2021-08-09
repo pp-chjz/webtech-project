@@ -1,9 +1,9 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/">Login</router-link> |
+      <router-link v-if="!isAuthen()" to="/">Login</router-link> |
       <router-link to="/SignUp">Sign Up</router-link> |
-      <router-link to="/logout">Log out</router-link> |
+      <router-link v-if="isAuthen()" to="/logout">Log out</router-link> |
 
       <router-link to="/Post">Post</router-link> |
       <router-link to="/Thread">Thread</router-link> |
@@ -15,16 +15,16 @@
     <router-view/>
   </div>
 </template>
-// <script>
-// import AuthUser from "@/store/AuthUser"
-// export default {
-//   methods:{
-//     isAuthen(){
-//       return AuthUser.getter.isAuthen
-//     }
-//     }
-// }
-// </script>
+<script>
+import AuthUser from "@/store/AuthUser"
+export default {
+  methods:{
+    isAuthen(){
+      return AuthUser.getters.isAuthen
+    }
+  }
+}
+</script>
 <style lang="scss">
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
