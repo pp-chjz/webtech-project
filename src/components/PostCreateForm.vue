@@ -89,6 +89,7 @@ export default {
                     
             }
         },
+
         add() {
             // let payload = this.form
     
@@ -96,6 +97,7 @@ export default {
 
             this.clearForm()
         },
+        
         async post(){
           if(this.form.priority === "ปกติ"){
             this.form.point = 10

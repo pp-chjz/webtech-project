@@ -4,16 +4,27 @@
       <router-link to="/">Login</router-link> |
       <router-link to="/SignUp">Sign Up</router-link> |
       <router-link to="/logout">Log out</router-link> |
-      <router-link to="/about">About</router-link> |
-      <router-link to="/pp">PP</router-link>|
-      <router-link to="/lin">LIN</router-link>|
+
       <router-link to="/Post">Post</router-link> |
-      <router-link to="/Thread">Thread</router-link>
+      <router-link to="/Thread">Thread</router-link> |
+      
+      <router-link to="/leader">LEADERBOARD</router-link>|
+      <router-link to="/reward">REWARD</router-link>
+      
     </div>
     <router-view/>
   </div>
 </template>
-
+// <script>
+// import AuthUser from "@/store/AuthUser"
+// export default {
+//   methods:{
+//     isAuthen(){
+//       return AuthUser.getter.isAuthen
+//     }
+//     }
+// }
+// </script>
 <style lang="scss">
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;

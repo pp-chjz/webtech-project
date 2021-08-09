@@ -205,6 +205,12 @@ export default {
       else if(this.form.name === '' ){
         this.$swal("Register Failed fill in your name")
       }
+      else if(this.form.email === '' ){
+        this.$swal("Please fill in your email")
+      }
+      else if(this.form.phone === '' ){
+        this.$swal("Please fill in your phone number")
+      }
       else if(res.success){
         this.$swal("Register Success")
         this.$router.push("/about")
@@ -219,7 +225,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300&display=swap');
+h2, label, button{
+  font-family: 'Chakra Petch', sans-serif;
+}
 .box-all, .line {
   margin-top: 20px;
   margin-bottom: 20px;

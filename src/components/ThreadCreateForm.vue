@@ -108,6 +108,7 @@ import AuthUser from "@/store/AuthUser"
             point_update: 0
         }
     },
+
     async created() {
             // ใช้ this เรียก methods ใน component ตัวเอง
            await this.fetchPost()
@@ -184,6 +185,7 @@ import AuthUser from "@/store/AuthUser"
                 // let res = await AuthService.help(100)
 
         },
+
         openForm(index, card) {
             this.editIndex = index
             let cloned = JSON.parse(JSON.stringify(card))
@@ -191,6 +193,7 @@ import AuthUser from "@/store/AuthUser"
             this.form.text = cloned.text
             this.form.priority = cloned.priority
         },
+
         closeForm() {
             this.editIndex = -1
             this.form = {
@@ -200,6 +203,7 @@ import AuthUser from "@/store/AuthUser"
                 priority: ''
             }
         },
+        
         editCard() {
             let payload = {
                 index: this.editIndex,
