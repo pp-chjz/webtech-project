@@ -3,9 +3,9 @@
         <!-- {{form}}
         <br>----------------------------------------<br>
         {{user_form}}         -->
-    <b-button id="log-out" variant="outline-danger" href="">ออกจากระบบ</b-button>
-    <b-button id="post" variant="outline-danger" href="">โพสต์</b-button>
-    <b-button id="reward" variant="outline-danger" href="">รางวัล</b-button>
+    <b-button @click="backLogIn" id="log-out" variant="outline-danger" href="">ออกจากระบบ</b-button>
+    <b-button @click="toPost" id="post" variant="outline-danger" href="">โพสต์</b-button>
+    <b-button @click="toReward" id="reward" variant="outline-danger" href="">รางวัล</b-button>
     <!-- <router-link v-if="isAuthen()" to="/About">Leader board</router-link> -->
     <h2>กระทู้ขอความช่วยเหลือ</h2>
 
@@ -212,7 +212,19 @@ import AuthUser from "@/store/AuthUser"
                 priority: this.form.priority
             }
             this.closeForm
-        }
+        },
+
+        backLogIn() {
+            this.$router.push('/')
+        },
+
+        toPost() {
+            this.$router.push('/Post')
+        },
+
+        toReward() {
+            this.$router.push('/reward')
+        },
     }
   }
 </script>

@@ -1,7 +1,7 @@
 <template>
 
   <div class="frame">
-    <b-button id="back" variant="outline-danger" href="">Back</b-button>
+    <b-button @click="backThread" id="back" variant="outline-danger" href="">Back</b-button>
 
     <h2 id="h2-post">โพสต์กระทู้ข้อความช่วยเหลือ</h2>
 
@@ -123,6 +123,10 @@ export default {
             this.$swal("post Failed",res.message,"error")
           }
 
+        },
+
+        backThread() {
+          this.$router.push("/Thread")
         }
   
     }
