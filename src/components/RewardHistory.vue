@@ -9,16 +9,18 @@
           ประวัติ
         </b-button>
 
-        <b-sidebar id="sidebar-right" bg-variant="dark" text-variant="danger" right shadow>
+        <b-sidebar id="sidebar-right" bg-variant="dark" text-variant="danger" right shadow width="500px">
           <div class="px-3 py-2" id="color-label">
             <v-simple-table 
+              id="table-his"
               fixed-header
-              height="850px">
+              height="720px">
               <thead >
                 <tr>
                   <th id="color-th">ลำดับ</th>
                   <th id="color-th">แต้มที่ได้รับ</th>
                   <th id="color-th">แต้มที่ใช้</th>
+                  <th id="color-th">รายการ</th>
                 </tr>
               </thead>
 
@@ -27,6 +29,7 @@
                   <td id="td-font">{{ index + 1 }}</td>
                   <td id="td-font">{{ history.receive_point }}</td>
                   <td id="td-font">{{ history.use_point }}</td>
+                  <td id="td-font"> รายการที่จะโชว์ </td>
                 </tr>
               </tbody>
 
@@ -77,7 +80,7 @@ h1,.totalpoint{
 }
 
 #color-th {
-  font-size: 20px;
+  font-size: 17px;
   margin: 40px;
   text-align: center;
   padding: 35px;
@@ -86,9 +89,21 @@ h1,.totalpoint{
   padding-right: 10px;
 }
 
+#color-th:hover {
+  text-shadow: 0 0 61px black; 
+}
+
 #td-font {
-  font-size: 20px;
+  font-size: 17px;
   color: #f5365c ;
+}
+
+#table-his:hover {
+  box-shadow: 0 0 21px #f5365c; 
+}
+
+#td-font:hover, #td-font:active {
+    font-size: 150%;
 }
 
 #bt-margin {
