@@ -6,6 +6,7 @@
     </div>
 
     <div>
+      <router-link to="/History">History</router-link>
 
 
       <div id="bt-inline">
