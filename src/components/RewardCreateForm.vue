@@ -6,13 +6,13 @@
     </div>
 
     <div>
-      <router-link to="/History">History</router-link>
-
-      <h3> คะแนนคงเหลือ: {{ form.point }}</h3>
+      <b-button @click="goHistory()" squared variant="outline-success">
+      <b-icon icon="clock-history" aria-hidden="true"></b-icon>
+      History</b-button>
     <b-button @click="goLeaderBoard()" squared variant="outline-primary">LeardBoard</b-button>
     <b-button @click="logout()" squared variant="outline-danger">Logout</b-button>
       <div id="bt-inline">
-        <b-button v-b-toggle.sidebar-1 class="button is-danger">
+        <b-button v-if="isAuthen()" v-b-toggle.sidebar-1 class="button is-danger">
         <b-icon icon="plus-circle" 
           aria-hidden="true"
           ></b-icon> 
@@ -89,6 +89,9 @@ export default {
   },
 
   methods: {
+    isAuthen(){
+      return AuthUser.getters.isAuthen
+    },
     clearForm() {
       this.form = {
         name: "",
@@ -116,6 +119,9 @@ export default {
     },
     logout(){
       this.$router.push('/')
+    },
+    goHistory(){
+      this.$router.push('/History')
     }
   }
 }

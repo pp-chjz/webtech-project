@@ -55,7 +55,7 @@
             <td id="td-font" v-if="index !== editIndex">
               <b-button id="bt-margin" 
               pill variant="outline-danger" 
-              @click="openForm(index, reward)">
+              v-if="isAuthen()" @click="openForm(index, reward)">
               แก้ไข</b-button>
             </td>
 
@@ -80,12 +80,12 @@
 
             <b-button id="bt-margin" 
             pill variant="outline-danger"
-            @click="decressReward(reward)">
+            v-if="isAuthen()" @click="decressReward(reward)">
             ลบ 1 ชิ้น</b-button>
 
             <b-button id="bt-margin" 
             pill variant="outline-danger"
-            @click="DeleteReward(reward)">
+            v-if="isAuthen()" @click="DeleteReward(reward)">
             ลบทั้งหมด</b-button>
 
             <b-button id="bt-margin" 
@@ -130,6 +130,9 @@ export default {
   },
 
   methods: {
+    isAuthen(){
+      return AuthUser.getters.isAuthen
+    },
     async fetchReward() {
       await RewardApiStore.dispatch("fetchReward")
       this.rewards = RewardApiStore.getters.rewards

@@ -2,14 +2,15 @@
   <div>
 
     <div>
-        <b-button v-b-toggle.sidebar-right class="button is-danger">
+        <b-button @click="goBack()" squared variant="outline-primary">Back</b-button>
+        <!-- <b-button v-b-toggle.sidebar-right class="button is-danger">
           <b-icon icon="clock-history" 
             aria-hidden="true"
             ></b-icon> 
           ประวัติ
-        </b-button>
+        </b-button> -->
 
-        <b-sidebar id="sidebar-right" bg-variant="dark" text-variant="danger" right shadow width="500px">
+        <!-- <b-sidebar id="sidebar-right" bg-variant="dark" text-variant="danger" right shadow width="500px"> -->
           <div class="px-3 py-2" id="color-label">
             <v-simple-table 
               id="table-his"
@@ -35,7 +36,7 @@
 
             </v-simple-table>
           </div>
-        </b-sidebar>
+        <!-- </b-sidebar> -->
 
     </div>
 
@@ -66,6 +67,9 @@ export default {
       await HistoryApiStore.dispatch("fetchHistory")
       this.histories = HistoryApiStore.getters.histories
     },
+    goBack(){
+        this.$router.push('/reward')
+    }
   
   },
 }
