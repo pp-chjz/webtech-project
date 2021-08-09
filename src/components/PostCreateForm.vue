@@ -75,6 +75,7 @@ export default {
               }
       }
     },
+
     methods: {
         clearForm() {
           console.log('clear');
@@ -117,7 +118,7 @@ export default {
           }
           else if(res.success){
             this.$swal("post Success")
-            this.$router.push("/about")
+            this.$router.push("/Thread")
           }
           else {
             this.$swal("post Failed",res.message,"error")

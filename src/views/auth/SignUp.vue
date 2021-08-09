@@ -1,8 +1,11 @@
 <template>
 
   <div class="frame">
-      <h2 id="h2-post">สมัครสมาชิก</h2>
-      <b-button @click="backLogin()" squared variant="outline-primary">Login</b-button>
+
+      <b-button @click="backLogin" id="log-out" variant="outline-danger" href="">เข้าสู่ระบบ</b-button>
+
+      <h2>สมัครสมาชิก</h2>
+
       <form @submit.prevent="register">
       
         <div class="box-all">
@@ -194,6 +197,7 @@ export default {
         add:''
       }
     },
+
     async register() {
       console.log(this.form)
       let res = await AuthService.register(this.form)
@@ -212,12 +216,13 @@ export default {
       }
       else if(res.success){
         this.$swal("Register Success")
-        this.$router.push("/about")
+        this.$router.push("/")
       }
       else {
         this.$swal("Register Failed",res.message,"error")
       }
     },
+
     backLogin(){
       this.$router.push('/')
     }
@@ -228,9 +233,9 @@ export default {
 
 <style lang="scss" scoped>
 @import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300&display=swap');
-h2, label, button{
-  font-family: 'Chakra Petch', sans-serif;
-}
+// h2, label, button{
+//   font-family: 'Chakra Petch', sans-serif;
+// }
 .box-all, .line {
   margin-top: 20px;
   margin-bottom: 20px;
@@ -246,6 +251,10 @@ h2, label, button{
 
 label {
   font-size: 18px;
+}
+
+h2 {
+  margin-left: 12%;
 }
 
 </style>

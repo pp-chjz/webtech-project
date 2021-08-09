@@ -157,6 +157,7 @@ import HistoryApi from "@/store/historyApi"
         async plus_point(point,id){
             await AuthUser.dispatch( "plus_point" , {point,id} ) 
         }, 
+
         async updateHis(point,id,help){
             await HistoryApi.dispatch( "updateHistory" ,{point,id,help} )
         },
@@ -171,9 +172,11 @@ import HistoryApi from "@/store/historyApi"
                 console.log(this.user)
                 await this.updateHis(index.get_point, this.user.id, index.topic)
 
+                console.log("index.get_point : " + index.get_point );
+
                 const notif = this.$buefy.notification.open({
                     duration: 5000, 
-                    message: `ขอบคุณมากค่ะที่ช่วยเหลือกัน`, 
+                    message: `คุณได้รับเเต้มจากการช่วยเหลือ ` + index.get_point  + ` ขอบคุณมากค่ะที่ช่วยเหลือกัน`, 
                     position: 'is-top-right', 
                     type: 'is-danger', 
                 }) 
@@ -183,9 +186,6 @@ import HistoryApi from "@/store/historyApi"
                 // location.reload()
                 
                 // console.log(auth)
-
-
-
 
                 // let res = await AuthService.help(100)
 

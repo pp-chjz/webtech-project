@@ -1,7 +1,9 @@
 <template>
   <div class="frame">
 
-    <h2 id="h2-post">เข้าสู่ระบบ</h2>
+    <b-button @click="toSignUp" id="sign-up" variant="outline-danger" href="">สมัครสมาชิก</b-button>
+
+    <h2>เข้าสู่ระบบ</h2>
 
     <form @submit.prevent="login">
 
@@ -97,11 +99,16 @@ export default {
         this.clearForm()
         }
     },
+
     clearForm(){
       this.form ={
         email:'',
         password:''
       }
+    },
+
+    toSignUp(){
+      this.$router.push('SignUp')
     }
   }
 }
@@ -110,9 +117,9 @@ export default {
 
 <style lang="scss" scoped>
 @import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300&display=swap');
-h2, label, button{
-  font-family: 'Chakra Petch', sans-serif;
-}
+// h2, label, button{
+//   font-family: 'Chakra Petch', sans-serif;
+// }
 .line {
   padding-left: 25%;
 }
@@ -124,5 +131,13 @@ h2, label, button{
 
 label {
   font-size: 18px;
+}
+
+#sign-up{
+  float: right;
+}
+
+h2 {
+  margin-left: 12%;
 }
 </style>
