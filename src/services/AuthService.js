@@ -1,10 +1,12 @@
 import Axios from 'axios'
+import { createNamespacedHelpers } from 'vuex'
 
 const auth_key = "auth"
-let auth = JSON.parse(localStorage.getItem(auth_key))
-const user= auth ? auth.user : ""
-const jwt = auth ? auth.jwt : ""
-const api_endpoint = process.env.VUE_APP_POKEDEX_ENDPOINT || "http://localhost:1337"
+// let auth = JSON.parse(localStorage.getItem(auth_key))
+// console.log('----- set user --------')
+// const user= auth ? auth.user : ""
+// const jwt = auth ? auth.jwt : ""
+const api_endpoint = "http://localhost:1337"
 
 export default {
     isAuthen() {
@@ -54,7 +56,7 @@ export default {
         }
     },
 
-    async register({username,email,password,c_password,phone,line,facebook,add,name}){
+    async register({name,username,email,password,c_password,phone,line,facebook,add}){
         //call POST/auth/local/register
         try{
             let url = `${api_endpoint}/auth/local/register`
@@ -67,7 +69,8 @@ export default {
                 phone: phone,
                 line: line,
                 face: facebook,
-                add: add
+                add: add,
+                point:0
             }
             if(password === c_password && name != '' )
             {
@@ -102,7 +105,12 @@ export default {
         }
     },
 
-    async post({ topic,text,priority,status,time }){
+    async post({ topic,text,priority,status,time,point }){
+        let auth = JSON.parse(localStorage.getItem(auth_key))
+        console.log('----- set user --------')
+        const user= auth ? auth.user : ""
+        const jwt = auth ? auth.jwt : ""
+        console.log( point )
         try{
             let url = `${api_endpoint}/posts`
             let body = {
@@ -116,14 +124,15 @@ export default {
                 line_user: user.line,
                 face_user:user.face,
                 add_user: user.add,
-                time: time
+                time: time,
+                get_point : point
                 // user_post_id: "test"
             }
             if(topic != '' && text != '')
             {
                 let res = await Axios.post(url, body)
                 if(res.status === 200){
-                    console.log(user)
+                    // console.log(user)
                     console.log(jwt)
                     console.log(res.data)
                     // localStorage.setItem(auth_key, JSON.stringify(res.data))
@@ -154,6 +163,28 @@ export default {
         }
          
     },
+
+    async help({ point , id }){
+        console.log( point )
+        console.log( id )
+        let url = `${api_endpoint}/users/${id.toString()}`
+        console.log(url)
+            let body ={
+                point: point
+            }
+            let res = await Axios.put(url, body)
+            console.log('----- res data --------')
+            console.log(res.data)
+            
+            localStorage.setItem(auth_key, JSON.stringify(res.data))
+            
+            console.log(JSON.parse(localStorage.getItem(auth_key)))
+            return{
+                success :true,
+                
+            }
+    },
+    
 
     logout(){
         localStorage.removeItem(auth_key)

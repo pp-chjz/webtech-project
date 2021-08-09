@@ -196,7 +196,7 @@ export default {
     },
 
     async register() {
-      console.log(this.check)
+      console.log(this.form)
       let res = await AuthService.register(this.form)
       
       if(this.form.password != this.form.c_password){

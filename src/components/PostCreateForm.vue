@@ -70,7 +70,8 @@ export default {
                   text: '',
                   priority: 'ปกติ',
                   time: new Date(),
-                  status: 'false'
+                  status: 'false',
+                  point: 0
               }
       }
     },
@@ -83,7 +84,8 @@ export default {
                     text: '',
                     priority: 'ปกติ',
                     time: new Date(),
-                    status: 'false'
+                    status: 'false',
+                    point:0
                     
             }
         },
@@ -95,7 +97,17 @@ export default {
             this.clearForm()
         },
         async post(){
-          console.log(new Date())
+          if(this.form.priority === "ปกติ"){
+            this.form.point = 10
+          } 
+
+          else if(this.form.priority === "ปานกลาง"){
+            this.form.point = 50
+          }
+          else{
+            this.form.point = 100
+          }
+          // console.log(new Date())
           let res = await AuthService.post(this.form)
           
           if(this.form.topic === '' || this.form.text === ''){

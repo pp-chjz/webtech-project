@@ -1,6 +1,8 @@
 <template>
     <div class="frame">
-        
+        <!-- {{form}}
+        <br>----------------------------------------<br>
+        {{user_form}}         -->
     <b-button id="log-out" variant="outline-danger" href="">Log Out</b-button>
     <b-button id="post" variant="outline-danger" href="">Post</b-button>
     <h2>กระทู้ข้อความช่วยเหลือ</h2>
@@ -12,16 +14,20 @@
                     <p>เรื่อง: {{ index.topic}}</p>
                     <p>รายละเอียด: {{ index.info }}</p>
                     <p>ระดับความสำคัญ: {{ index.priority }}</p>
+                    <p>Line: {{ index.line_user }}</p>
+                    <p>Facebook: {{ index.face_user }}</p>
+                    <p>Phone: {{ index.phone_user }}</p>
+                    <p>Address: {{ index.add_user }}</p>
                 </form>
 
-                <button @click="danger()" id="bt" class="button is-danger">ช่วยเหลือ</button>
+                <button @click="danger(index)" id="bt" class="button is-danger">ช่วยเหลือ</button>
                 
             </span>
         </div>
 
     <h2>กระทู้ของฉัน</h2>
         <div class="my-thread"> 
-            <span class="card" v-for="(card, index) in form" :key="index">
+            <span class="card" v-for="(card, index) in user_form" :key="index">
                 <form class="color-p">
                     <p>ชื่อเจ้าของกระทู้: {{ card.user_post_name }}</p>
                     
@@ -66,7 +72,11 @@
 
 <script>
 
+const auth_key = "auth"
+const api_endpoint = process.env.VUE_APP_POKEDEX_ENDPOINT || "http://localhost:1337"
+
 import PostApiStore from "@/store/Post"
+import AuthService from "@/services/AuthService"
 
   export default {
     data() {
@@ -78,32 +88,91 @@ import PostApiStore from "@/store/Post"
                 info: "",
                 priority:"",
                 status:"",
-                user_post_id:""
+                user_post_id:"",
+                line_user:"",
+                face_user:"",
+                add_user:"",
+                phone_user:""
+            },
+            user_form: {
+                user_post_name:"",
+                topic: "",
+                info: "",
+                priority:"",
+                status:"",
             }
         }
     },
     async created() {
             // ใช้ this เรียก methods ใน component ตัวเอง
            await this.fetchPost()
-            console.log(this.form)
-            console.log("test")
+           await this.fetchFilterPost()
         },
     methods: {
         async fetchPost(){
 
             await PostApiStore.dispatch("fetchPost")
+            // await PostApiStore.dispatch("fetchFilteredPost")
 
             this.form = PostApiStore.getters.posts
-            console.log("kala"  + this.form)
+            // this.user_form = PostApiStore.getters.filterPost
+            console.log("------form--------")
+            console.log(this.form)
+            console.log("--------------")
+            // console.log(this.user_form)
 
         },
-        danger() {
+        async fetchFilterPost(){
+            console.log("--------------")
+
+            // await PostApiStore.dispatch("fetchPost")
+            await PostApiStore.dispatch("fetchFilteredPost")
+             console.log("--------------")
+
+            // this.form = PostApiStore.getters.posts
+            this.user_form = PostApiStore.getters.posts
+
+            // console.log(this.form)
+            
+            console.log(this.user_form)
+            console.log("this.user_form")
+
+        },
+        async plus_point(point,id){
+            let res = await AuthService.help( point , id ) 
+        },
+        danger(index) {
+                console.log('----- set user --------')
+
+
+                let auth = JSON.parse(localStorage.getItem(auth_key)) 
+                
+                const user= auth ? auth.user : ""  
+                const jwt = auth ? auth.jwt : "" 
+
+
+                console.log("Authser") 
+                console.log( user.point ) 
+                console.log( index.get_point ) 
+
+                user.point += index.get_point 
+                console.log( "user id =" + user.point )                       
+                this.plus_point( user.point , user.id ) 
+
                 const notif = this.$buefy.notification.open({
-                    duration: 5000,
-                    message: `ขอบคุณมากค่ะที่ช่วยเหลือกัน`,
-                    position: 'is-top-right',
-                    type: 'is-danger',
-                })   
+                    duration: 5000, 
+                    message: `ขอบคุณมากค่ะที่ช่วยเหลือกัน`, 
+                    position: 'is-top-right', 
+                    type: 'is-danger', 
+                }) 
+                
+                // console.log(auth)
+
+
+
+
+                // let res = await AuthService.help(100)
+
         },
         openForm(index, card) {
             this.editIndex = index
