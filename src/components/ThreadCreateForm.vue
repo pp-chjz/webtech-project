@@ -5,6 +5,7 @@
         {{user_form}}         -->
     <b-button id="log-out" variant="outline-danger" href="">ออกจากระบบ</b-button>
     <b-button id="post" variant="outline-danger" href="">โพสต์</b-button>
+    <b-button id="reward" variant="outline-danger" href="">รางวัล</b-button>
     <!-- <router-link v-if="isAuthen()" to="/About">Leader board</router-link> -->
     <h2>กระทู้ขอความช่วยเหลือ</h2>
 
@@ -271,6 +272,10 @@ span.card:hover {
 
 #post {
     float: left;
+}
+
+#reward {
+    margin-bottom: 30px;
 }
 
 #bt {
