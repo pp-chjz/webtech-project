@@ -6,7 +6,9 @@ import Axios from "axios"
 Vue.use(Vuex)
 
 let auth_key = 'auth'
+console.log("call local")
 let auth = JSON.parse(localStorage.getItem(auth_key))
+console.log("call local")
 const api_endpoint = "http://localhost:1337"
 
 
@@ -30,10 +32,10 @@ export default new Vuex.Store({
         state.isAuthen = false
       },
       edit(state, payload){
-        console.log("@@@@@@@@@@@@@@@@@@@@")
-          console.log(state.user)
+          console.log("@@@@@@@@@@@@@@@@@@@@")
+          console.log(state.user.point)
           state.user = payload.data
-          console.log(state.user)
+          console.log(state.user.point)
       }
   },
   actions: {

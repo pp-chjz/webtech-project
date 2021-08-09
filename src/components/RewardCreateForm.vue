@@ -7,7 +7,6 @@
 
     <div>
 
-      <h3> คะแนนคงเหลือ: {{ form.point }}</h3>
 
       <div id="bt-inline">
         <b-button v-b-toggle.sidebar-1 class="button is-danger">
@@ -69,6 +68,7 @@
 <script>
 
 import RewardApiStore from "@/store/rewardApi"
+import AuthUser from "@/store/AuthUser"
 export default {
   data() {
     return {
@@ -77,7 +77,12 @@ export default {
         point: "",
         quantity: ""
       },
+      user:"",
     }
+  },
+  
+  created() {
+    this.fetchUser()
   },
 
   methods: {
@@ -87,6 +92,9 @@ export default {
         point: "",
         quantity: ""
       }
+    },
+    async fetchUser(){
+      this.user = AuthUser.getters.user
     },
 
     addReward() {

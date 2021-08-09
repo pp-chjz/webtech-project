@@ -1,6 +1,8 @@
 <template>
   <div>
 
+    <h3> คะแนนคงเหลือ: {{ user.point }}</h3>
+
     <div>
       <v-simple-table 
         id="color-th" 
@@ -72,12 +74,24 @@
             <!-- <button @click="deleteReward">ลบ</button> -->
             
             <b-button id="bt-margin" 
-            pill variant="outline-danger">
+            pill variant="outline-danger"
+            @click="exchangeReward(reward)">
             Exchange</b-button>
 
             <b-button id="bt-margin" 
-            pill variant="outline-danger">
-            ลบ</b-button>
+            pill variant="outline-danger"
+            @click="decressReward(reward)">
+            ลบ 1 ชิ้น</b-button>
+
+            <b-button id="bt-margin" 
+            pill variant="outline-danger"
+            @click="DeleteReward(reward)">
+            ลบทั้งหมด</b-button>
+
+            <b-button id="bt-margin" 
+            pill variant="outline-danger"
+            @click="lookPoint()">
+            ดูคะแนน</b-button>
             
           </tr>
 
@@ -91,10 +105,12 @@
 
 <script>
 import RewardApiStore from "@/store/rewardApi"
+import AuthUser from "@/store/AuthUser"
 export default {
   data() {
     return {
       rewards: [], 
+      user:"",
       editIndex: -1,
       form: {
         id: "",
@@ -102,11 +118,14 @@ export default {
         point: "",
         quantity:""
       },
+      q_reward: 0,
+      remaining_point:0
     }
   },
 
   created() {
     this.fetchReward()
+    this.fetchUser()
   },
 
   methods: {
@@ -114,6 +133,42 @@ export default {
       await RewardApiStore.dispatch("fetchReward")
       this.rewards = RewardApiStore.getters.rewards
     },
+    async fetchUser(){
+      this.user = AuthUser.getters.user
+    },
+    lookPoint(){
+      this.fetchUser
+      this.$swal("คะแนนของคุณคือ = " + this.user.point)
+    },
+    async realMinusPoint(id,point){
+        await AuthUser.dispatch("plus_point", {id,point})
+    },
+    async exchangeReward(reward){
+        console.log(reward.point)
+        this.remaining_point = this.user.point - reward.point
+        console.log(this.remaining_point)
+        if(this.remaining_point < 0 )
+        {
+          this.$swal("คะแนนของคุณไม่พอ!!")
+        }
+        else if(reward.quantity === 0){
+          await this.realMinusPoint( this.user.id , this.remaining_point )
+          this.fetchUser()
+          await this.realDeleteReward(reward.id)
+          this.fetchReward()
+          console.log("else if")
+        }
+        else{
+           await this.realMinusPoint( this.user.id , this.remaining_point )
+           console.log("else")
+           this.fetchUser()
+           await this.decressReward(reward)
+           this.fetchReward()
+           console.log(this.user.point)
+          //  location.reload()
+        }
+    },
+
 
     openForm(index, reward) {
       console.log("index", index)
@@ -136,6 +191,49 @@ export default {
       }
     },
 
+    async realDecressReward(id,quantity){
+      await RewardApiStore.dispatch("decressReward",{id , quantity})
+    },
+
+    async decressReward(reward){
+      this.q_reward = reward.quantity - 1
+      // console.log("reward")
+      // console.log(reward.quantity)
+      // console.log(this.q_reward)
+      // if(reward.quantity > 1){
+        if(this.q_reward === 0){
+          await this.realDeleteReward(reward.id)
+          this.fetchReward()
+        }
+        else{
+          await this.realDecressReward(reward.id , this.q_reward)
+          this.fetchReward()
+        }
+      // }
+      // else
+      //   await RewardApiStore.dispatch("deleteReward",reward.id )
+      // location.reload()
+
+    },
+
+    async realDeleteReward(id){
+      await RewardApiStore.dispatch("deleteReward",id)
+    },
+
+    async DeleteReward(reward){
+      // console.log("reward")
+      // console.log(reward.quantity)
+      // console.log(this.q_reward)
+      // if(reward.quantity > 1){
+        await this.realDeleteReward(reward.id)
+        this.fetchReward()
+      // }
+      // else
+        // await RewardApiStore.dispatch("deleteReward",reward.id )
+      // location.reload()
+
+    },
+
     async editReward() {
       let payload = {
         index: this.editIndex,
@@ -148,7 +246,7 @@ export default {
       await RewardApiStore.dispatch("editReward", payload)
       this.closeForm()
       this.fetchReward()
-      location.reload()
+      // location.reload()
     },
     // async deleteReward(reward) {
     // await RewardApiStore.dispatch("deleteReward",reward);
