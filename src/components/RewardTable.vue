@@ -106,6 +106,7 @@
 <script>
 import RewardApiStore from "@/store/rewardApi"
 import AuthUser from "@/store/AuthUser"
+import HistoryApiStore from "@/store/historyApi"
 export default {
   data() {
     return {
@@ -143,6 +144,9 @@ export default {
     async realMinusPoint(id,point){
         await AuthUser.dispatch("plus_point", {id,point})
     },
+    async updateHis(point,id,help){
+            await HistoryApiStore.dispatch( "updateHistoryReward" ,{point,id,help} )
+    },
     async exchangeReward(reward){
         console.log(reward.point)
         this.remaining_point = this.user.point - reward.point
@@ -155,6 +159,7 @@ export default {
           await this.realMinusPoint( this.user.id , this.remaining_point )
           this.fetchUser()
           await this.realDeleteReward(reward.id)
+          await this.updateHis( reward.point,this.user.id,reward.name  )
           this.fetchReward()
           console.log("else if")
         }
@@ -163,6 +168,7 @@ export default {
            console.log("else")
            this.fetchUser()
            await this.decressReward(reward)
+           await this.updateHis( reward.point,this.user.id,reward.name  )
            this.fetchReward()
            console.log(this.user.point)
           //  location.reload()

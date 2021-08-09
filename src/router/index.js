@@ -11,6 +11,8 @@ import Thread from '../views/Thread.vue'
 import Leader from'../views/Leader.vue'
 import Reward from'../views/Reward.vue'
 
+import History from'../views/RewardHistory.vue'
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -18,6 +20,11 @@ const routes = [
     path: '/',
     name: 'Login',
     component: Login
+  },
+  {
+    path: '/History',
+    name: 'History',
+    component: History
   },
   {
     path: '/SignUp',
