@@ -251,7 +251,7 @@ h2 {
 }
 
 span.card {
-    width: 350px;
+    width: 400px;
     height: auto;
     display: inline-flex;
     margin: 20px;
