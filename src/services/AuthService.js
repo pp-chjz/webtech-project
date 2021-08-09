@@ -21,11 +21,25 @@ export default {
     },
 
 
+    getApiHeader(){
+        let jwt = JSON.parse(localStorage.getItem('auth')).jwt
+        if(jwt !== ""){
+            return{
+                headers: {
+                    Authorization: "Bearer" + jwt
+                }
+            }
+        }
+        return{}
+    },
+
+
 
 
     async login({email,password}){
         //call POSTauth/local
         try{
+            // console.log("[[[[[[[[[[[[" + email,password)
             let body ={
                 identifier: email,
                 password: password

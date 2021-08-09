@@ -5,10 +5,12 @@
 <script>
 
 import AuthService from "@/services/AuthService"
+import AuthUser from "@/store/AuthUser"
 
 export default {
     mounted(){
-        AuthService.logout()
+        // AuthService.logout()
+        AuthUser.dispatch('logout')
             this.$router.push('/')
         }
 }

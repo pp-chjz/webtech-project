@@ -5,6 +5,8 @@
         {{user_form}}         -->
     <b-button id="log-out" variant="outline-danger" href="">Log Out</b-button>
     <b-button id="post" variant="outline-danger" href="">Post</b-button>
+    <router-link v-if="isAuthen()" to="/About">Leader board</router-link>
+    <p>คะแนนของคุณ : {{user.point}}</p>
     <h2>กระทู้ข้อความช่วยเหลือ</h2>
 
         <div class="all-thread" > 
@@ -77,6 +79,7 @@ const api_endpoint = process.env.VUE_APP_POKEDEX_ENDPOINT || "http://localhost:1
 
 import PostApiStore from "@/store/Post"
 import AuthService from "@/services/AuthService"
+import AuthUser from "@/store/AuthUser"
 
   export default {
     data() {
@@ -100,15 +103,27 @@ import AuthService from "@/services/AuthService"
                 info: "",
                 priority:"",
                 status:"",
-            }
+            },
+            user: "",
+            point_update: 0
         }
     },
     async created() {
             // ใช้ this เรียก methods ใน component ตัวเอง
            await this.fetchPost()
            await this.fetchFilterPost()
+           this.fetchCurrentUser()
+            console.log("===========")
+           console.log(this.user)
+            console.log("===========")
         },
     methods: {
+        fetchCurrentUser(){
+            this.user = AuthUser.getters.user
+        },
+        isAuthen(){
+            return AuthUser.getters.isAuthen
+        },
         async fetchPost(){
 
             await PostApiStore.dispatch("fetchPost")
@@ -139,25 +154,16 @@ import AuthService from "@/services/AuthService"
 
         },
         async plus_point(point,id){
-            let res = await AuthService.help( point , id ) 
-        },
-        danger(index) {
-                console.log('----- set user --------')
+            await AuthUser.dispatch( "plus_point" , {point,id} ) 
+        }, 
+        async danger(index) {
 
+                this.point_update = this.user.point + index.get_point 
 
-                let auth = JSON.parse(localStorage.getItem(auth_key)) 
-                
-                const user= auth ? auth.user : ""  
-                const jwt = auth ? auth.jwt : "" 
-
-
-                console.log("Authser") 
-                console.log( user.point ) 
-                console.log( index.get_point ) 
-
-                user.point += index.get_point 
-                console.log( "user id =" + user.point )                       
-                this.plus_point( user.point , user.id ) 
+                console.log( "user id =" + this.point_update )                     
+                await this.plus_point(  this.point_update,this.user.id  ) 
+                this.fetchCurrentUser()
+                console.log(this.user)
 
                 const notif = this.$buefy.notification.open({
                     duration: 5000, 
@@ -165,6 +171,10 @@ import AuthService from "@/services/AuthService"
                     position: 'is-top-right', 
                     type: 'is-danger', 
                 }) 
+                
+                // console.log(this.user)
+
+                // location.reload()
                 
                 // console.log(auth)
 

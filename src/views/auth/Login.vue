@@ -66,6 +66,7 @@
 <script>
 
 import AuthService from "@/services/AuthService"
+import AuthUser from "@/store/AuthUser"
 
 export default {
   data(){
@@ -78,7 +79,9 @@ export default {
   },
   methods:{
     async  login(){
-      let res = await AuthService.login(this.form)
+      // let res = await AuthService.login(this.form)
+      let res = await AuthUser.dispatch('login', this.form)
+      console.log(res.roles)
         if(res.success && res.roles === "admin"){
           console.log("testtest")
           this.$swal("Login Success,You are ADMIN!!")
