@@ -8,7 +8,8 @@
     <div>
 
       <h3> คะแนนคงเหลือ: {{ form.point }}</h3>
-
+    <b-button @click="goLeaderBoard()" squared variant="outline-primary">LeardBoard</b-button>
+    <b-button @click="logout()" squared variant="outline-danger">Logout</b-button>
       <div id="bt-inline">
         <b-button v-b-toggle.sidebar-1 class="button is-danger">
         <b-icon icon="plus-circle" 
@@ -69,6 +70,7 @@
 <script>
 
 import RewardApiStore from "@/store/rewardApi"
+import AuthUser from "@/store/AuthUser"
 export default {
   data() {
     return {
@@ -77,7 +79,12 @@ export default {
         point: "",
         quantity: ""
       },
+      user:"",
     }
+  },
+  
+  created() {
+    this.fetchUser()
   },
 
   methods: {
@@ -87,6 +94,9 @@ export default {
         point: "",
         quantity: ""
       }
+    },
+    async fetchUser(){
+      this.user = AuthUser.getters.user
     },
 
     addReward() {
@@ -99,8 +109,13 @@ export default {
       RewardApiStore.dispatch("addReward", payload)
       this.clearForm()
       location.reload()
+    },
+    goLeaderBoard(){
+      this.$router.push('/leader')
+    },
+    logout(){
+      this.$router.push('/')
     }
-
   }
 }
 </script>

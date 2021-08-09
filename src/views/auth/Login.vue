@@ -85,11 +85,11 @@ export default {
         if(res.success && res.roles === "admin"){
           console.log("testtest")
           this.$swal("Login Success,You are ADMIN!!")
-          this.$router.push('/about')
+          this.$router.push('/leader')
         }
       else if(res.success && res.roles === "common"){
         this.$swal("Login Success,You are USER!!" ,`Welcome, ${res.user.username}`, "success")
-        this.$router.push('/about')
+        this.$router.push('/Thread')
         }
       else 
       {

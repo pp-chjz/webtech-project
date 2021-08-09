@@ -27,6 +27,23 @@ export default new Vuex.Store({
     // }
   },
   actions: {
+    async deleteReward({commit}, payload){
+      console.log("payload")
+      console.log(payload)
+      let res = await Axios.delete(api_endpoint + "/rewards/" + payload.toString())
+      console.log(res)
+
+    },
+    async decressReward({commit}, payload){
+      console.log("payload")
+      console.log(payload)
+      let body={
+          quantity : payload.quantity
+      }
+      let res = await Axios.put(api_endpoint + "/rewards/" + payload.id.toString(),body)
+      commit('edit',{res})
+
+    },
     async fetchReward ({ commit }){
         let res = await Axios.get(api_endpoint + "/rewards")
         console.log(res);
