@@ -7,7 +7,9 @@
 
     <div>
 
-
+      <h3> คะแนนคงเหลือ: {{ form.point }}</h3>
+    <b-button @click="goLeaderBoard()" squared variant="outline-primary">LeardBoard</b-button>
+    <b-button @click="logout()" squared variant="outline-danger">Logout</b-button>
       <div id="bt-inline">
         <b-button v-b-toggle.sidebar-1 class="button is-danger">
         <b-icon icon="plus-circle" 
@@ -107,8 +109,13 @@ export default {
       RewardApiStore.dispatch("addReward", payload)
       this.clearForm()
       location.reload()
+    },
+    goLeaderBoard(){
+      this.$router.push('/leader')
+    },
+    logout(){
+      this.$router.push('/')
     }
-
   }
 }
 </script>

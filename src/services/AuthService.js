@@ -9,6 +9,17 @@ const auth_key = "auth"
 const api_endpoint = "http://localhost:1337"
 
 export default {
+    // state:{
+    //     data:[]
+    // },
+    // getters:{
+    //     users:(state) => state.data
+    // },
+    // mutations:{
+    //     fetch (state, { res }){
+    //         state.data = res.data
+    //     },
+    // },
     isAuthen() {
         return (user !== "" ) && ( jwt != "")
     },
@@ -203,6 +214,11 @@ export default {
     logout(){
         localStorage.removeItem(auth_key)
     },
-
-
+    // actions: {
+    //     async fetchUser ({ commit }){
+    //         let res = await Axios.get(api_endpoint + "/users")
+    //         console.log(res);
+    //         commit('fetch',{ res })
+    //     },
+    // }
 }

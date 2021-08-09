@@ -2,7 +2,8 @@
   <div>
 
     <h1>Point</h1>
-
+    <b-button @click="goReward()" squared variant="outline-primary">Reward</b-button>
+    <b-button @click="logout()" squared variant="outline-danger">Logout</b-button>
       <v-simple-table 
         id="color-th" 
         class="border"
@@ -12,22 +13,22 @@
           <tr>
             <th id="color-th">ลำดับ</th>
             <th id="color-th">ชื่อ</th>
-            <th id="color-th">นามสกุล</th>
             <th id="color-th">Point</th>
-            <th id="color-th">Reward</th>
-            <th id="color-th">History</th>
           </tr>
         </thead>
 
         <tbody>
-          <tr v-for="index in 0" :key="index" >
-            <td id="td-font">{{ index }}</td>
-            <td id="td-font">ชื่อ</td>
-            <td id="td-font">สกุล</td>
-            <td id="td-font">Point</td>
-            <td id="td-font">Reward</td>
-            <td id="td-font">History</td>
-          </tr>
+      
+          <!-- <tr v-for="(user, index)in users" :key="index" > -->
+            <td id="td-font"></td>
+            <td id="td-font"></td>
+            <td id="td-font"></td>
+          <!-- </tr> -->
+          <!-- <tr v-for="(user, index)in users" :key="index" >
+            <td id="td-font">{{ index+1 }}</td>
+            <td id="td-font">{{ user.name }}</td>
+            <td id="td-font">{{ user.point }}</td>
+          </tr> -->
         </tbody>
       </v-simple-table>
 
@@ -36,20 +37,20 @@
       <h3 id="margin-10px">Receive Point</h3>
       
       <div>
-      <input id="margin-10px" type="radio" name="category" v-model="form.morereceive" >
+      <input id="margin-10px" type="radio" name="category">
       <label id="margin-10px">More Receive</label>
-      <input id="margin-10px" type="radio" name="category" v-model="form.lessreceive" >
+      <input id="margin-10px" type="radio" name="category">
       <label id="margin-10px">Less Receive</label>
       </div>
 
       <div>
         <label id="margin-10px">startsearch:</label>
-        <input type="date" id="datestartreceive" name="date" v-model="form.datestartreceive">
+        <input type="date" id="datestartreceive" name="date">
         <label id="margin-10px">endsearch:</label>
-        <input type="date" id="dateendrecieve" name="date" v-model="form.dateendreceive">
+        <input type="date" id="dateendrecieve" name="date">
       </div>
 
-      <b-button @click="searchForm" variant="outline-primary">
+      <b-button variant="outline-primary">
       <b-icon icon="search"></b-icon> Search
       </b-button>
 
@@ -60,20 +61,20 @@
       <h3 id="margin-10px">Use Point</h3>
 
       <div>
-      <input id="margin-10px" type="radio" name="category" v-model="form.moreuse">
+      <input id="margin-10px" type="radio" name="category">
       <label id="margin-10px">More Use</label>
-      <input id="margin-10px" type="radio" name="category" v-model="form.lessuse">
+      <input id="margin-10px" type="radio" name="category">
       <label id="margin-10px">Less Use</label>
       </div>
 
       <div>
         <label id="margin-10px">startsearch:</label>
-        <input type="date" id="datestartuse" name="date" v-model="form.datestartuse">
+        <input type="date" id="datestartuse" name="date">
         <label id="margin-10px">endsearch:</label>
-        <input type="date" id="dateenduse" name="date" v-model="form.dareenduse">
+        <input type="date" id="dateenduse" name="date">
       </div>
 
-      <b-button @click="searchForm" variant="outline-primary">
+      <b-button variant="outline-primary">
         <b-icon icon="search"></b-icon> Search
       </b-button>
 
@@ -81,41 +82,35 @@
 
   </div>
 </template>
-
 <script>
+// import AuthService from "@/services/AuthService"
 export default {
-  data(){
-    return{
-      form:{
-      morereceive:"",
-      lessreceive:"",
-      datestartreceive:"",
-      dateendreceive:"",
-      morereceive:"",
-      lessreceive:"",
-      datestartreceive:"",
-      dateendreceive:"",
-      }
+  // data(){
+  //   return{
+  //     form:{
+  //       name: '',
+  //       point:''
+  //     }
+  //   }
+  // },
+  // created() {
+  //   this.fetchUser()
+  // },
+
+  // methods:{
+  //   async fetchUser() {
+  //     await HistoryApiStore.dispatch("fetchUser")
+  //     this.users= AuthService.getters.users
+  //   },
+  // },
+  methods:{
+    goReward(){
+      this.$router.push('/reward')
+    },
+    logout(){
+      this.$router.push('/')
     }
-  },
-  
-    methods:{
-      clearForm(){
-        this.form={
-        morereceive:"",
-        lessreceive:"",
-        datestartreceive:"",
-        dateendreceive:"",
-        moreuse:"",
-        lessuse:"",
-        datestartuse:"",
-        dareenduse:""
-       }
-      },
-      searchForm(){
-        this.clearForm()
-      }
-    }
+  }
 }
 </script>
 

@@ -2,7 +2,7 @@
 
   <div class="frame">
       <h2 id="h2-post">สมัครสมาชิก</h2>
-
+      <b-button @click="backLogin()" squared variant="outline-primary">Login</b-button>
       <form @submit.prevent="register">
       
         <div class="box-all">
@@ -194,7 +194,6 @@ export default {
         add:''
       }
     },
-
     async register() {
       console.log(this.form)
       let res = await AuthService.register(this.form)
@@ -218,6 +217,9 @@ export default {
       else {
         this.$swal("Register Failed",res.message,"error")
       }
+    },
+    backLogin(){
+      this.$router.push('/')
     }
 
   }
