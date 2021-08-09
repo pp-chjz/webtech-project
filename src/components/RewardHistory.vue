@@ -29,7 +29,7 @@
                   <td id="td-font">{{ index + 1 }}</td>
                   <td id="td-font">{{ history.receive_point }}</td>
                   <td id="td-font">{{ history.use_point }}</td>
-                  <td id="td-font"> รายการที่จะโชว์ </td>
+                  <td id="td-font"> {{ history.help }} </td>
                 </tr>
               </tbody>
 

@@ -73,6 +73,7 @@ const api_endpoint = process.env.VUE_APP_POKEDEX_ENDPOINT || "http://localhost:1
 import PostApiStore from "@/store/Post"
 import AuthService from "@/services/AuthService"
 import AuthUser from "@/store/AuthUser"
+import HistoryApi from "@/store/historyApi"
 
   export default {
     data() {
@@ -155,6 +156,9 @@ import AuthUser from "@/store/AuthUser"
         async plus_point(point,id){
             await AuthUser.dispatch( "plus_point" , {point,id} ) 
         }, 
+        async updateHis(point,id,help){
+            await HistoryApi.dispatch( "updateHistory" ,{point,id,help} )
+        },
 
         async danger(index) {
 
@@ -164,6 +168,7 @@ import AuthUser from "@/store/AuthUser"
                 await this.plus_point(  this.point_update,this.user.id  ) 
                 this.fetchCurrentUser()
                 console.log(this.user)
+                await this.updateHis(index.get_point, this.user.id, index.topic)
 
                 const notif = this.$buefy.notification.open({
                     duration: 5000, 
