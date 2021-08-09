@@ -4,7 +4,7 @@
 ## Installation
 ---
 
-Clone and install 
+### Clone and install 
 
 open Terminal 2 terminal
 cd Desktop
