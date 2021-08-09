@@ -6,6 +6,7 @@
     </div>
 
     <div>
+      <router-link to="/History">History</router-link>
 
       <h3> คะแนนคงเหลือ: {{ form.point }}</h3>
     <b-button @click="goLeaderBoard()" squared variant="outline-primary">LeardBoard</b-button>
