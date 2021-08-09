@@ -3,11 +3,12 @@
         <!-- {{form}}
         <br>----------------------------------------<br>
         {{user_form}}         -->
-    <b-button id="log-out" variant="outline-danger" href="">Log Out</b-button>
-    <b-button id="post" variant="outline-danger" href="">Post</b-button>
-    <router-link v-if="isAuthen()" to="/About">Leader board</router-link>
-    <p>คะแนนของคุณ : {{user.point}}</p>
-    <h2>กระทู้ข้อความช่วยเหลือ</h2>
+    <b-button id="log-out" variant="outline-danger" href="">ออกจากระบบ</b-button>
+    <b-button id="post" variant="outline-danger" href="">โพสต์</b-button>
+    <!-- <router-link v-if="isAuthen()" to="/About">Leader board</router-link> -->
+    <h2>กระทู้ขอความช่วยเหลือ</h2>
+
+    <p id="my-point" class="color-p">คะแนนของคุณ : {{user.point}}</p>
 
         <div class="all-thread" > 
             <span class="card"  v-for="index in form" :key="index.id">
@@ -52,20 +53,12 @@
                         <input type="text" v-model="form.priority">
                     </p>
 
-                    <p v-if="index != editIndex">
-                        <button  @click="openForm(index, card)" id="mp" class="button is-danger">แก้ไข</button>
-                        <button id="mp" class="button is-danger">ลบ</button>
-                    </p>
-
                     <p v-if="index === editIndex">
                         <button id="mp" @click="editCard" class="button is-danger">บันทึก</button>
                         <!-- <button id="mp" @click="closeForm" class="button is-danger">ยกเลิก</button> -->
                     </p>
 
                 </form>
-
-                <!-- <button  @click="openForm(index, card)" id="mp" class="button is-danger">แก้ไข</button> -->
-                <!-- <button id="mp" class="button is-danger">ลบ</button> -->
             </span>
         </div>
 
@@ -118,13 +111,16 @@ import AuthUser from "@/store/AuthUser"
            console.log(this.user)
             console.log("===========")
         },
+
     methods: {
         fetchCurrentUser(){
             this.user = AuthUser.getters.user
         },
+
         isAuthen(){
             return AuthUser.getters.isAuthen
         },
+
         async fetchPost(){
 
             await PostApiStore.dispatch("fetchPost")
@@ -138,6 +134,7 @@ import AuthUser from "@/store/AuthUser"
             // console.log(this.user_form)
 
         },
+
         async fetchFilterPost(){
             console.log("--------------")
 
@@ -154,9 +151,11 @@ import AuthUser from "@/store/AuthUser"
             console.log("this.user_form")
 
         },
+
         async plus_point(point,id){
             await AuthUser.dispatch( "plus_point" , {point,id} ) 
         }, 
+
         async danger(index) {
 
                 this.point_update = this.user.point + index.get_point 
@@ -224,7 +223,8 @@ import AuthUser from "@/store/AuthUser"
 }
 
 h2 {
-   color: #f5365c
+   color: #f5365c;
+   text-decoration-line: underline overline;
 }
 
 .color-p {
@@ -241,6 +241,14 @@ span.card {
     padding-left: 10px;
     padding-right: 10px;
     box-shadow: black 2px 2px;
+}
+span.card:hover {
+  box-shadow: 0 0 61px rgba(33,33,33,.2); 
+  border-color: #f5365c; 
+}
+
+#my-point:hover, #my-point:active {
+    font-size: 150%;
 }
 
 .all-thread , .my-thread {
@@ -269,6 +277,10 @@ span.card {
     margin-bottom: 10px;
 }
 
-
+#my-point {
+    margin-top: 40px;
+    margin-bottom: -20px;
+    font-size: 20px;
+}
 
 </style>
