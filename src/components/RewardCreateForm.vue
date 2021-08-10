@@ -55,8 +55,6 @@
               </b-row>
             </div>
 
-            <b-form-file id="color-label" class="mt-3" plain ></b-form-file>
-
           </div>
           
           <button @click="addReward" class="button is-danger" id="size-button">เพิ่ม</button>
