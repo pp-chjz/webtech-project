@@ -92,6 +92,7 @@ export default {
     isAuthen(){
       return AuthUser.getters.isAuthen
     },
+
     clearForm() {
       this.form = {
         name: "",
@@ -99,6 +100,7 @@ export default {
         quantity: ""
       }
     },
+
     async fetchUser(){
       this.user = AuthUser.getters.user
     },
@@ -114,12 +116,15 @@ export default {
       this.clearForm()
       location.reload()
     },
+
     goLeaderBoard(){
       this.$router.push('/leader')
     },
+
     logout(){
       this.$router.push('/')
     },
+    
     goHistory(){
       this.$router.push('/History')
     }

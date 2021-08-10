@@ -1,7 +1,7 @@
 <template>
   <div>
 
-    <h3> คะแนนคงเหลือ: {{ user.point }}</h3>
+    <p id="my-point" class="color-p"> คะแนนคงเหลือ: {{ user.point }}</p>
 
     <div>
       <v-simple-table 
@@ -17,6 +17,8 @@
             <th id="color-th">ชื่อรางวัล</th>
             <th id="color-th">จำนวนแต้มในการแลก</th>
             <th id="color-th">จำนวน</th>
+            <th> </th>
+            <th></th>
           </tr>
         </thead>
 
@@ -133,23 +135,29 @@ export default {
     isAuthen(){
       return AuthUser.getters.isAuthen
     },
+
     async fetchReward() {
       await RewardApiStore.dispatch("fetchReward")
       this.rewards = RewardApiStore.getters.rewards
     },
+
     async fetchUser(){
       this.user = AuthUser.getters.user
     },
+
     lookPoint(){
       this.fetchUser
       this.$swal("คะแนนของคุณคือ = " + this.user.point)
     },
+
     async realMinusPoint(id,point){
         await AuthUser.dispatch("plus_point", {id,point})
     },
+
     async updateHis(point,id,help){
             await HistoryApiStore.dispatch( "updateHistoryReward" ,{point,id,help} )
     },
+
     async exchangeReward(reward){
         console.log(reward.point)
         this.remaining_point = this.user.point - reward.point
@@ -177,7 +185,6 @@ export default {
           //  location.reload()
         }
     },
-
 
     openForm(index, reward) {
       console.log("index", index)
@@ -269,20 +276,30 @@ export default {
 
 @import url('https://fonts.googleapis.com/css2?family=Sriracha&display=swap');
 
-h1,.totalpoint{
-    font-family: 'Sriracha', cursive;
-}
+// h1,.totalpoint{
+//     font-family: 'Sriracha', cursive;
+// }
 
 #color-th {
-  font-size: 25px;
-  margin: 30px;
+  font-size: 17px;
+  margin: 40px;
   text-align: center;
   padding: 35px;
-  color: #f5365c;
+  color: #f5365c ;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+#color-th:hover {
+  text-shadow: 0 0 51px white; 
 }
 
 #td-font {
   font-size: 20px;
+}
+
+#td-font:hover, #td-font:active {
+    font-size: 150%;
 }
 
 #bt-margin {

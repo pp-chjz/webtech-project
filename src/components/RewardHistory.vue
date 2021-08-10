@@ -2,7 +2,8 @@
   <div>
 
     <div>
-        <b-button @click="goBack()" squared variant="outline-primary">Back</b-button>
+        <b-button @click="goBack()" id="back" variant="outline-danger" href="">Back</b-button>
+
         <!-- <b-button v-b-toggle.sidebar-right class="button is-danger">
           <b-icon icon="clock-history" 
             aria-hidden="true"
@@ -67,6 +68,7 @@ export default {
       await HistoryApiStore.dispatch("fetchHistory")
       this.histories = HistoryApiStore.getters.histories
     },
+
     goBack(){
         this.$router.push('/reward')
     }
@@ -79,9 +81,9 @@ export default {
 
 @import url('https://fonts.googleapis.com/css2?family=Sriracha&display=swap');
 
-h1,.totalpoint{
-    font-family: 'Sriracha', cursive;
-}
+// h1,.totalpoint{
+//     font-family: 'Sriracha', cursive;
+// }
 
 #color-th {
   font-size: 17px;
