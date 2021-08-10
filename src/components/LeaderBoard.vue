@@ -4,9 +4,9 @@
     <b-button @click="logout()" id="logout" variant="outline-danger" href="">ออกจากระบบ</b-button>
 
     
-        <div class="receive">
+        <!-- <div class="receive"> -->
 
-      <h3 id="margin-10px">เลือก</h3>
+      <!-- <h3 id="margin-10px">เลือก</h3> -->
       
       <!-- <div>
       <input id="margin-10px" type="radio" name="category">
@@ -15,28 +15,31 @@
       <label id="margin-10px">Less Receive</label>
       </div> -->
 
-      <div>
+      <!-- <div>
         <label id="margin-10px">startsearch:</label>
         <input type="date" id="datestartreceive" name="date">
         <label id="margin-10px">endsearch:</label>
         <input type="date" id="dateendrecieve" name="date">
-      </div>
+      </div> -->
 
-      <button @click="searchR()">Search</button>
+      <!-- <button @click="searchR()">Search</button> -->
 
-      <b-button variant="outline-primary">
+      <!-- <b-button variant="outline-primary">
       <b-icon icon="search"></b-icon> Search
-      </b-button>
+      </b-button> -->
 
-    </div>
+    <!-- </div> -->
 
-    <h1>Point</h1>
-    <b-button @click="goReward()" squared variant="outline-primary">Reward</b-button>
-    <b-button @click="logout()" squared variant="outline-danger">Logout</b-button>
-    <h1>Use</h1>
+    <h2>บอร์ดคะแนน</h2>
+
+    <!-- <b-button @click="goReward()" squared variant="outline-primary">Reward</b-button>
+    <b-button @click="logout()" squared variant="outline-danger">Logout</b-button> -->
+    <h3>ตารางการใช้แต้ม</h3>
+
       <v-simple-table 
-        id="color-th" 
+        id="table-board" 
         class="border"
+        dark
         fixed-header
         height="700px">
         <thead>
@@ -73,9 +76,10 @@
       </v-simple-table>
 
 
-    <h1>get</h1>
+    <h3>ตารางการได้แต้ม</h3>
       <v-simple-table 
-        id="color-th" 
+        id="table-board" 
+        dark
         class="border"
         fixed-header
         height="700px">
@@ -104,13 +108,14 @@
             <td id="td-font">{{ history.reward }}</td>
             <td id="td-font">{{ history.time_text }}</td>
           </tr>
+
           <!-- <tr v-for="(user, index)in users" :key="index" >
             <td id="td-font">{{ index+1 }}</td>
             <td id="td-font">{{ user.name }}</td>
             <td id="td-font">{{ user.point }}</td>
           </tr> -->
-        </tbody>
-      </v-simple-table>
+        <!-- </tbody>
+      </v-simple-table> -->
 
 
 <!-- 
@@ -140,7 +145,7 @@
 
     </div> -->
 
-    <v-simple-table 
+    <!-- <v-simple-table 
         id="table-board" 
         class="border"
         fixed-header
@@ -151,20 +156,21 @@
             <th id="color-th">ชื่อ</th>
             <th id="color-th">คะแนน</th>
           </tr>
-        </thead>
+        </thead> -->
 
-        <tbody>
+        <!-- <tbody>
       
-          <!-- <tr v-for="(user, index)in users" :key="index" > -->
+          <tr v-for="(user, index)in users" :key="index" >
             <td id="td-font"></td>
             <td id="td-font"></td>
-            <td id="td-font"></td>
+            <td id="td-font"></td> -->
           <!-- </tr> -->
           <!-- <tr v-for="(user, index)in users" :key="index" >
             <td id="td-font">{{ index+1 }}</td>
             <td id="td-font">{{ user.name }}</td>
             <td id="td-font">{{ user.point }}</td>
           </tr> -->
+        
         </tbody>
       </v-simple-table>
 
@@ -259,6 +265,13 @@ export default {
   text-shadow: 0 0 51px black; 
 }
 
+h3 {
+  color: #f5365c ;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  text-decoration-line: underline;
+}
+
 #td-font {
   font-size: 17px;
   color: #f5365c ;
@@ -271,9 +284,8 @@ export default {
 }
 
 h2 {
-  color: #f5365c;
-  padding-left: 8%;
-  margin-bottom: 30px;
+   color: #f5365c;
+   text-decoration-line: underline overline;
 }
 
 #table-board {
