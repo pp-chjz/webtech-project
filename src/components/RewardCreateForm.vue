@@ -104,15 +104,22 @@ export default {
     },
 
     addReward() {
-      let payload = {
-        name: this.form.name,
-        point: this.form.point,
-        quantity: this.form.quantity
+      if(this.user.roles === "admin")
+      {
+        let payload = {
+          name: this.form.name,
+          point: this.form.point,
+          quantity: this.form.quantity
+        }
+        console.log(payload)
+        RewardApiStore.dispatch("addReward", payload)
+        this.clearForm()
+        location.reload()
       }
-      console.log(payload)
-      RewardApiStore.dispatch("addReward", payload)
-      this.clearForm()
-      location.reload()
+      else{
+        this.$swal("only Admin can do this")
+      }
+
     },
 
     goLeaderBoard(){
