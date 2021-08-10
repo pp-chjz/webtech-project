@@ -3,9 +3,9 @@
         <!-- {{form}}
         <br>----------------------------------------<br>
         {{user_form}}         -->
-    <b-button id="log-out" variant="outline-danger" href="">ออกจากระบบ</b-button>
-    <b-button id="post" variant="outline-danger" href="">โพสต์</b-button>
-    <b-button id="reward" variant="outline-danger" href="">รางวัล</b-button>
+    <b-button @click="backLogIn" id="log-out" variant="outline-danger" href="">ออกจากระบบ</b-button>
+    <b-button @click="toPost" id="post" variant="outline-danger" href="">โพสต์</b-button>
+    <b-button @click="toReward" id="reward" variant="outline-danger" href="">รางวัล</b-button>
     <!-- <router-link v-if="isAuthen()" to="/About">Leader board</router-link> -->
     <h2>กระทู้ขอความช่วยเหลือ</h2>
 
@@ -171,9 +171,11 @@ import HistoryApi from "@/store/historyApi"
                 console.log(this.user)
                 await this.updateHis(index.get_point, this.user.id, index.topic,this.user.name,this.user.username)
 
+                console.log("index.get_point : " + index.get_point );
+
                 const notif = this.$buefy.notification.open({
                     duration: 5000, 
-                    message: `ขอบคุณมากค่ะที่ช่วยเหลือกัน`, 
+                    message: `คุณได้รับเเต้มจากการช่วยเหลือ ` + index.get_point  + ` ขอบคุณมากค่ะที่ช่วยเหลือกัน`, 
                     position: 'is-top-right', 
                     type: 'is-danger', 
                 })
@@ -183,9 +185,6 @@ import HistoryApi from "@/store/historyApi"
                 // location.reload()
                 
                 // console.log(auth)
-
-
-
 
                 // let res = await AuthService.help(100)
 
@@ -217,7 +216,19 @@ import HistoryApi from "@/store/historyApi"
                 priority: this.form.priority
             }
             this.closeForm
-        }
+        },
+
+        backLogIn() {
+            this.$router.push('/')
+        },
+
+        toPost() {
+            this.$router.push('/Post')
+        },
+
+        toReward() {
+            this.$router.push('/reward')
+        },
     }
   }
 </script>
@@ -239,7 +250,7 @@ h2 {
 }
 
 span.card {
-    width: 350px;
+    width: 400px;
     height: auto;
     display: inline-flex;
     margin: 20px;

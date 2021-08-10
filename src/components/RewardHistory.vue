@@ -2,14 +2,16 @@
   <div>
 
     <div>
-        <b-button v-b-toggle.sidebar-right class="button is-danger">
+        <b-button @click="goBack()" id="back" variant="outline-danger" href="">Back</b-button>
+
+        <!-- <b-button v-b-toggle.sidebar-right class="button is-danger">
           <b-icon icon="clock-history" 
             aria-hidden="true"
             ></b-icon> 
           ประวัติ
-        </b-button>
+        </b-button> -->
 
-        <b-sidebar id="sidebar-right" bg-variant="dark" text-variant="danger" right shadow width="500px">
+        <!-- <b-sidebar id="sidebar-right" bg-variant="dark" text-variant="danger" right shadow width="500px"> -->
           <div class="px-3 py-2" id="color-label">
             <v-simple-table 
               id="table-his"
@@ -35,7 +37,7 @@
 
             </v-simple-table>
           </div>
-        </b-sidebar>
+        <!-- </b-sidebar> -->
 
     </div>
 
@@ -67,6 +69,10 @@ export default {
       this.histories = HistoryApiStore.getters.histories
       console.log(this.histories)
     },
+
+    goBack(){
+        this.$router.push('/reward')
+    }
   
   },
 }
@@ -76,9 +82,9 @@ export default {
 
 @import url('https://fonts.googleapis.com/css2?family=Sriracha&display=swap');
 
-h1,.totalpoint{
-    font-family: 'Sriracha', cursive;
-}
+// h1,.totalpoint{
+//     font-family: 'Sriracha', cursive;
+// }
 
 #color-th {
   font-size: 17px;
