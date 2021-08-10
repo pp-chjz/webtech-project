@@ -162,13 +162,34 @@ export default {
            await this.realMinusPoint( this.user.id , this.remaining_point )
            console.log("else")
            this.fetchUser()
-           await this.decressReward(reward)
+           await this.decressReward2(reward)
            await this.updateHis( reward.point,this.user.id,reward.name  ,this.user.name, this.user.username )
            this.fetchReward()
            console.log(this.user.point)
           //  location.reload()
         }
     },
+    async decressReward2(reward){
+          this.q_reward = reward.quantity - 1
+        // console.log("reward")
+        // console.log(reward.quantity)
+        // console.log(this.q_reward)
+        // if(reward.quantity > 1){
+          if(this.q_reward === 0){
+            await this.realDeleteReward(reward.id)
+            this.fetchReward()
+          }
+          else{
+            await this.realDecressReward(reward.id , this.q_reward)
+            this.fetchReward()
+          }
+        // }
+        // else
+        //   await RewardApiStore.dispatch("deleteReward",reward.id )
+        // location.reload()
+      
+    },
+
 
 
     openForm(index, reward) {
