@@ -89,11 +89,6 @@
             pill variant="outline-danger"
             v-if="isAuthen()" @click="DeleteReward(reward)">
             ลบทั้งหมด</b-button>
-
-            <b-button id="bt-margin" 
-            pill variant="outline-danger"
-            @click="lookPoint()">
-            ดูคะแนน</b-button>
             
           </tr>
 
@@ -153,9 +148,8 @@ export default {
     async realMinusPoint(id,point){
         await AuthUser.dispatch("plus_point", {id,point})
     },
-
-    async updateHis(point,id,help){
-            await HistoryApiStore.dispatch( "updateHistoryReward" ,{point,id,help} )
+    async updateHis(point,id,help,name,username){
+            await HistoryApiStore.dispatch( "updateHistoryReward" ,{point,id,help,name,username} )
     },
 
     async exchangeReward(reward){
@@ -170,7 +164,7 @@ export default {
           await this.realMinusPoint( this.user.id , this.remaining_point )
           this.fetchUser()
           await this.realDeleteReward(reward.id)
-          await this.updateHis( reward.point,this.user.id,reward.name  )
+          await this.updateHis( reward.point,this.user.id,reward.name ,this.user.name, this.user.username )
           this.fetchReward()
           console.log("else if")
         }
@@ -179,7 +173,7 @@ export default {
            console.log("else")
            this.fetchUser()
            await this.decressReward(reward)
-           await this.updateHis( reward.point,this.user.id,reward.name  )
+           await this.updateHis( reward.point,this.user.id,reward.name  ,this.user.name, this.user.username )
            this.fetchReward()
            console.log(this.user.point)
           //  location.reload()
@@ -187,14 +181,21 @@ export default {
     },
 
     openForm(index, reward) {
-      console.log("index", index)
-      console.log("reward", reward)
-      this.editIndex = index
-      let cloned = JSON.parse(JSON.stringify(reward))
-      this.form.id = cloned.id
-      this.form.name = cloned.name
-      this.form.point = cloned.point
-      this.form.quantity = cloned.quantity
+      if(this.user.roles === "admin")
+      {
+        console.log("index", index)
+        console.log("reward", reward)
+        this.editIndex = index
+        let cloned = JSON.parse(JSON.stringify(reward))
+        this.form.id = cloned.id
+        this.form.name = cloned.name
+        this.form.point = cloned.point
+        this.form.quantity = cloned.quantity
+      }
+      else{
+        this.$swal("only Admin can do this")
+      }
+      
     },
 
     closeForm() {
@@ -212,23 +213,29 @@ export default {
     },
 
     async decressReward(reward){
-      this.q_reward = reward.quantity - 1
-      // console.log("reward")
-      // console.log(reward.quantity)
-      // console.log(this.q_reward)
-      // if(reward.quantity > 1){
-        if(this.q_reward === 0){
-          await this.realDeleteReward(reward.id)
-          this.fetchReward()
-        }
-        else{
-          await this.realDecressReward(reward.id , this.q_reward)
-          this.fetchReward()
-        }
-      // }
-      // else
-      //   await RewardApiStore.dispatch("deleteReward",reward.id )
-      // location.reload()
+      if(this.user.roles === "admin"){
+          this.q_reward = reward.quantity - 1
+        // console.log("reward")
+        // console.log(reward.quantity)
+        // console.log(this.q_reward)
+        // if(reward.quantity > 1){
+          if(this.q_reward === 0){
+            await this.realDeleteReward(reward.id)
+            this.fetchReward()
+          }
+          else{
+            await this.realDecressReward(reward.id , this.q_reward)
+            this.fetchReward()
+          }
+        // }
+        // else
+        //   await RewardApiStore.dispatch("deleteReward",reward.id )
+        // location.reload()
+      }
+      else{
+        this.$swal("only Admin can do this")
+      }
+      
 
     },
 
@@ -237,16 +244,22 @@ export default {
     },
 
     async DeleteReward(reward){
-      // console.log("reward")
-      // console.log(reward.quantity)
-      // console.log(this.q_reward)
-      // if(reward.quantity > 1){
-        await this.realDeleteReward(reward.id)
-        this.fetchReward()
-      // }
-      // else
-        // await RewardApiStore.dispatch("deleteReward",reward.id )
-      // location.reload()
+      if(this.user.roles === "admin"){
+          // console.log("reward")
+        // console.log(reward.quantity)
+        // console.log(this.q_reward)
+        // if(reward.quantity > 1){
+          await this.realDeleteReward(reward.id)
+          this.fetchReward()
+        // }
+        // else
+          // await RewardApiStore.dispatch("deleteReward",reward.id )
+        // location.reload()
+      }
+      else{
+        this.$swal("only Admin can do this")
+      }
+    
 
     },
 

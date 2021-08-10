@@ -67,6 +67,7 @@ export default {
     async fetchHistory() {
       await HistoryApiStore.dispatch("fetchHistory")
       this.histories = HistoryApiStore.getters.histories
+      console.log(this.histories)
     },
 
     goBack(){
