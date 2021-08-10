@@ -157,8 +157,8 @@ import HistoryApi from "@/store/historyApi"
         async plus_point(point,id){
             await AuthUser.dispatch( "plus_point" , {point,id} ) 
         }, 
-        async updateHis(point,id,help){
-            await HistoryApi.dispatch( "updateHistory" ,{point,id,help} )
+        async updateHis(point,id,help,name,username){
+            await HistoryApi.dispatch( "updateHistory" ,{point,id,help,name,username} )
         },
 
         async danger(index) {
@@ -169,14 +169,14 @@ import HistoryApi from "@/store/historyApi"
                 await this.plus_point(  this.point_update,this.user.id  ) 
                 this.fetchCurrentUser()
                 console.log(this.user)
-                await this.updateHis(index.get_point, this.user.id, index.topic)
+                await this.updateHis(index.get_point, this.user.id, index.topic,this.user.name,this.user.username)
 
                 const notif = this.$buefy.notification.open({
                     duration: 5000, 
                     message: `ขอบคุณมากค่ะที่ช่วยเหลือกัน`, 
                     position: 'is-top-right', 
                     type: 'is-danger', 
-                }) 
+                })
                 
                 // console.log(this.user)
 

@@ -1,9 +1,35 @@
 <template>
   <div>
+        <div class="receive">
+
+      <h3 id="margin-10px">เลือก</h3>
+      
+      <!-- <div>
+      <input id="margin-10px" type="radio" name="category">
+      <label id="margin-10px">More Receive</label>
+      <input id="margin-10px" type="radio" name="category">
+      <label id="margin-10px">Less Receive</label>
+      </div> -->
+
+      <div>
+        <label id="margin-10px">startsearch:</label>
+        <input type="date" id="datestartreceive" name="date">
+        <label id="margin-10px">endsearch:</label>
+        <input type="date" id="dateendrecieve" name="date">
+      </div>
+
+      <button @click="searchR()">Search</button>
+
+      <b-button variant="outline-primary">
+      <b-icon icon="search"></b-icon> Search
+      </b-button>
+
+    </div>
 
     <h1>Point</h1>
     <b-button @click="goReward()" squared variant="outline-primary">Reward</b-button>
     <b-button @click="logout()" squared variant="outline-danger">Logout</b-button>
+    <h1>Use</h1>
       <v-simple-table 
         id="color-th" 
         class="border"
@@ -13,17 +39,27 @@
           <tr>
             <th id="color-th">ลำดับ</th>
             <th id="color-th">ชื่อ</th>
-            <th id="color-th">Point</th>
+            <th id="color-th">username</th>
+            <th id="color-th">Point ที่ใช้</th>
+            <th id="color-th">Point ที่รับ</th>
+            <th id="color-th">รายการ</th>
+            <th id="color-th">ของรางวัล</th>
+            <th id="color-th">เวลา</th>
           </tr>
         </thead>
 
         <tbody>
       
-          <!-- <tr v-for="(user, index)in users" :key="index" > -->
-            <td id="td-font"></td>
-            <td id="td-font"></td>
-            <td id="td-font"></td>
-          <!-- </tr> -->
+          <tr v-for="(history, index) in use_histories" :key="index" >
+            <td id="td-font">{{ index+1 }}</td>
+            <td id="td-font">{{ history.user_name }}</td>
+            <td id="td-font">{{ history.username }}</td>
+            <td id="td-font">{{ history.use_point }}</td>
+            <td id="td-font">{{ history.receive_point }}</td>
+            <td id="td-font">{{ history.reward }}</td>
+            <td id="td-font">{{ history.help }}</td>
+            <td id="td-font">{{ history.time_text }}</td>
+          </tr>
           <!-- <tr v-for="(user, index)in users" :key="index" >
             <td id="td-font">{{ index+1 }}</td>
             <td id="td-font">{{ user.name }}</td>
@@ -32,78 +68,110 @@
         </tbody>
       </v-simple-table>
 
-    <div class="receive">
 
-      <h3 id="margin-10px">Receive Point</h3>
+    <h1>get</h1>
+      <v-simple-table 
+        id="color-th" 
+        class="border"
+        fixed-header
+        height="700px">
+        <thead>
+          <tr>
+            <th id="color-th">ลำดับ</th>
+            <th id="color-th">ชื่อ</th>
+            <th id="color-th">username</th>
+            <th id="color-th">Point ที่ใช้</th>
+            <th id="color-th">Point ที่รับ</th>
+            <th id="color-th">รายการ</th>
+            <th id="color-th">ของรางวัล</th>
+            <th id="color-th">เวลา</th>
+          </tr>
+        </thead>
+
+        <tbody>
       
-      <div>
-      <input id="margin-10px" type="radio" name="category">
-      <label id="margin-10px">More Receive</label>
-      <input id="margin-10px" type="radio" name="category">
-      <label id="margin-10px">Less Receive</label>
-      </div>
+          <tr v-for="(history, index) in get_histories" :key="index" >
+            <td id="td-font">{{ index+1 }}</td>
+            <td id="td-font">{{ history.user_name }}</td>
+            <td id="td-font">{{ history.username }}</td>
+            <td id="td-font">{{ history.use_point }}</td>
+            <td id="td-font">{{ history.receive_point }}</td>
+            <td id="td-font">{{ history.help }}</td>
+            <td id="td-font">{{ history.reward }}</td>
+            <td id="td-font">{{ history.time_text }}</td>
+          </tr>
+          <!-- <tr v-for="(user, index)in users" :key="index" >
+            <td id="td-font">{{ index+1 }}</td>
+            <td id="td-font">{{ user.name }}</td>
+            <td id="td-font">{{ user.point }}</td>
+          </tr> -->
+        </tbody>
+      </v-simple-table>
 
-      <div>
-        <label id="margin-10px">startsearch:</label>
-        <input type="date" id="datestartreceive" name="date">
-        <label id="margin-10px">endsearch:</label>
-        <input type="date" id="dateendrecieve" name="date">
-      </div>
 
-      <b-button variant="outline-primary">
-      <b-icon icon="search"></b-icon> Search
-      </b-button>
-
-    </div>
-
+<!-- 
     <div class="use">
     
-      <h3 id="margin-10px">Use Point</h3>
+      <h3 id="margin-10px">Use Point</h3> -->
 
-      <div>
+      <!-- <div>
       <input id="margin-10px" type="radio" name="category">
       <label id="margin-10px">More Use</label>
       <input id="margin-10px" type="radio" name="category">
       <label id="margin-10px">Less Use</label>
-      </div>
+      </div> -->
 
-      <div>
+      <!-- <div>
         <label id="margin-10px">startsearch:</label>
         <input type="date" id="datestartuse" name="date">
         <label id="margin-10px">endsearch:</label>
         <input type="date" id="dateenduse" name="date">
       </div>
 
+      <button @click="searchU()">Search</button>
+
       <b-button variant="outline-primary">
-        <b-icon icon="search"></b-icon> Search
+        <b-icon @click="searchU()" icon="search"></b-icon> Search
       </b-button>
 
-    </div>
+    </div> -->
 
   </div>
 </template>
 <script>
-// import AuthService from "@/services/AuthService"
+import HistoryApiStore from "@/store/historyApi"
 export default {
-  // data(){
-  //   return{
-  //     form:{
-  //       name: '',
-  //       point:''
-  //     }
-  //   }
-  // },
-  // created() {
-  //   this.fetchUser()
-  // },
-
-  // methods:{
-  //   async fetchUser() {
-  //     await HistoryApiStore.dispatch("fetchUser")
-  //     this.users= AuthService.getters.users
-  //   },
-  // },
+  data(){
+    return{
+      histories:[],
+      use_histories:[],
+      get_histories:[]
+    }
+  },
+  async created() {
+    await this.fetchHistory()
+    await this.fetchUseHistory()
+    await this.fetchGetHistory()
+    console.log(this.get_histories)
+  },
   methods:{
+    async fetchHistory() {
+      await HistoryApiStore.dispatch("fetchHistory")
+      this.histories = HistoryApiStore.getters.histories
+    },
+    async fetchUseHistory() {
+      await HistoryApiStore.dispatch("fetchUseHistory")
+      this.use_histories = HistoryApiStore.getters.use_histories
+    },
+    async fetchGetHistory() {
+      await HistoryApiStore.dispatch("fetchGetHistory")
+      this.get_histories = HistoryApiStore.getters.get_histories
+    },
+    searchR(){
+      console.log("test")
+      console.log(document.getElementById("datestartreceive").value)
+      console.log(document.getElementById("dateendrecieve").value)
+    },
     goReward(){
       this.$router.push('/reward')
     },
@@ -119,11 +187,11 @@ export default {
 @import url('https://fonts.googleapis.com/css2?family=Sriracha&display=swap');
 
       
-.receive, .use{
-  margin-left: 70%;
-  margin-bottom: 5%;
-  margin-top: -25%;
-}
+// .receive, .use{
+//   margin-left: 70%;
+//   margin-bottom: 5%;
+//   margin-top: -25%;
+// }
 
 #color-th {
   font-size: 25px;
