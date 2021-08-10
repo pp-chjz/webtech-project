@@ -140,4 +140,9 @@ label {
 h2 {
   margin-left: 12%;
 }
+
+.frame{
+    padding-right: 20px;
+    padding-left: 20px;
+}
 </style>

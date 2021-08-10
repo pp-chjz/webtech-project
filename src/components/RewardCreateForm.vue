@@ -5,7 +5,7 @@
         <b-icon icon="clock-history" aria-hidden="true"></b-icon>
       History</b-button>
     <b-button @click="goLeaderBoard()" squared variant="outline-primary">LeardBoard</b-button>
-    <b-button @click="back" squared variant="outline-info">Beck</b-button>
+    <b-button @click="back()" squared variant="outline-primary">Back</b-button>
     <b-button @click="logout()" squared variant="outline-danger">Logout</b-button>
         
     <h2>รางวัล</h2>
@@ -135,8 +135,8 @@ export default {
       this.$router.push('/History')
     },
 
-    Back(){
-        this.$router.push('/reward')
+    back(){
+        this.$router.push('/Thread')
     }
   }
 }
